@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>cadastrousuario</title>
+</h:head>
+	<h:body>
+	<h1>CADASTRO DE USUÁRIO</h1>
+		<h:form id="formUsuario">
+			<h:panelGrid columns="2">
+			
+				<p:outputLabel value="e-Mail"/>
+				<p:inputText value="#{usuarioMB.usuarioNovo.email}"/>
+				
+				<p:outputLabel value="Nome"/>
+				<p:inputText value="#{usuarioMB.usuarioNovo.nome}"/> 
+	          
+				<p:outputLabel for="button" value="Data de Nascimento" />
+				<p:calendar id="button" value="#{usuarioMB.usuarioNovo.dataNascimento}" showOn="button" /> 
+				
+				<p:outputLabel value="Telefone Fixo"/>
+				<p:inputText value="#{usuarioMB.usuarioNovo.telefoneFixo}"/>
+				
+				<p:outputLabel value="Telefone Móvel"/>
+				<p:inputText value="#{usuarioMB.usuarioNovo.telefoneMovel}"/>
+				
+				<p:outputLabel value="Endereço"/>
+				<p:inputText value="#{usuarioMB.usuarioNovo.endereco}"/>  
+				
+				<p:outputLabel value="RG"/>
+				<p:inputText value="#{usuarioMB.usuarioNovo.rg}"/>
+				
+				<p:outputLabel value="CPF"/>
+				<p:inputText value="#{usuarioMB.usuarioNovo.cpf}"/>
+	           
+				<p:outputLabel value="Sexo"/>
+				<p:inputText value="#{usuarioMB.usuarioNovo.sexo}"/>
+				
+			</h:panelGrid>    
+	     	<br/>
+	     	<p:commandButton action="#{usuarioMB.salvar}" value="Salvar" update=":formUsuario" />
+		</h:form>
+		<br/><br/>
+		<p:link outcome="Menu" value="VOLTAR AO MENU PRINCIPAL" />
+	</h:body>
+</html>

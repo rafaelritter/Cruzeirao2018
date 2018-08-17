@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+>
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>cadastrocartao</title>
+</h:head>
+	<h:body>
+		<h1>CADASTRO DE CARTÃO</h1>
+		<h:form id="formCartao">
+			<h:panelGrid columns="2" cellpadding="5">
+				     
+				<p:outputLabel value="Tipo"/>
+				<p:inputText value="#{cartaoMB.cartao.tipo}"/>
+					           
+				<p:outputLabel value="Tempo"/>
+				<p:inputText value="#{cartaoMB.cartao.tempo}"/>
+				     
+			</h:panelGrid>
+			<br/>
+			<p:commandButton action="#{cartaoMB.Salvar}" value="Salvar" update=":formCartao"/>
+		</h:form>
+		<br/><br/>
+		<p:link outcome="Menu" value ="VOLTAR AO MENU PRINCIPAL"/>
+	</h:body>
+</html>

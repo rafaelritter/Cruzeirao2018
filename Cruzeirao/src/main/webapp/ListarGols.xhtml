@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>listargol</title>
+</h:head>
+	<h:body>
+	<h1>INFORMAÇÕES DA PARTIDA</h1>
+		<h:form>
+			<p:dataTable var="info" value="#{partidaFutebolMB.lista}">
+				
+				<p:column headerText="Gols - Mandantes" >
+				<p:outputLabel value="#{info.golsMandantes}"/>
+				</p:column>
+				
+				<p:column headerText="Gols - Visitantes" >
+				<p:outputLabel value="#{info.golsVisitantes}"/>
+				</p:column>
+				
+				<p:column headerText="Gols de Penaltes - Mandantes" >
+				<p:outputLabel value="#{info.golsPenaltesMandantes}"/>
+				</p:column>
+				
+				<p:column headerText="Gols de Penaltes - Visitantes" >
+				<p:outputLabel value="#{info.golsPenaltesVisitantes}"/>
+				</p:column>
+				
+				<p:column headerText="Cartões - Mandantes" >
+				<p:outputLabel value="#{info.cartoesMandantes}"/>
+				</p:column>
+				     
+				<p:column headerText="Cartões - Visitantes" >
+				<p:outputLabel value="#{info.cartoesVisitantes}"/>
+				</p:column>
+					
+			</p:dataTable>
+		</h:form>
+		<br/>
+	<h1>GOLS CADASTRADOS</h1>
+		<h:form>
+			<p:dataTable var="gol" value="#{golMB.lista}">
+				
+				<p:column headerText="Tempo" >
+				<p:outputLabel value="#{gol.tempo}"/>
+				</p:column>
+				
+				<p:column headerText="Penalte" >
+				<p:outputLabel value="#{gol.penalty}"/>
+				</p:column>
+			       
+			</p:dataTable>
+		</h:form>
+		<br/><br/>
+		<p:link outcome="Menu" value="VOLTAR AO MENU PRINCIPAL" />
+	</h:body>
+</html>

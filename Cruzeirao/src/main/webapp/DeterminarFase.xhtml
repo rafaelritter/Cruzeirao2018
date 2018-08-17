@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+>
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>determinarfase</title>
+</h:head>
+	<h:body>
+	<h1>DETERMINAR FASE</h1>
+		<h:form id="formFase">
+			<h:panelGrid columns="2" cellpadding="5">
+			     
+			<p:outputLabel for="button" value="Data de Início: " />
+			<p:calendar id="button" value="#{faseMB.fase.dataInicio}" showOn="button" />
+			
+			<p:outputLabel for="button2" value="Data de Término: " />
+			<p:calendar id="button2" value="#{faseMB.fase.dataFim}" showOn="button" />
+			
+			<p:outputLabel value="Número: "/>
+			<p:inputText value="#{faseMB.fase.numero}"/>
+			
+			</h:panelGrid>
+			<br/>
+			<p:commandButton action="#{faseMB.Salvar}" value="Salvar" update=":formFase" />
+		</h:form>
+		<br/><br/>
+		<p:link outcome="Menu" value="VOLTAR AO MENU PRINCIPAL" />
+	</h:body>
+</html>

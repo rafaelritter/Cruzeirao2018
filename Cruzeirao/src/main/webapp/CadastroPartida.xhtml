@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+>
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>cadastropartida</title>
+</h:head>
+	<h:body>
+	<h1>CADASTRO DE PARTIDA</h1>
+		<h:form id="formPartida">
+			<h:panelGrid columns="2" cellpadding="5">
+			
+				<p:outputLabel value="Número"/>
+				<p:inputText value="#{partidaMB.partida.numero}"/> 
+				
+				<p:outputLabel for="button" value="Data" />
+				<p:calendar id="button" value="#{partidaMB.partida.data}" showOn="button" />
+				
+				<p:outputLabel value="Local"/>
+				<p:inputText value="#{partidaMB.partida.local}"/>
+				
+				<p:outputLabel value="Relato do Juíz"/>
+				<p:inputText value="#{partidaMB.partida.relatoJuiz}"/>
+			
+			</h:panelGrid>
+		    <br/>
+			<p:commandButton action="#{partidaMB.Salvar}" value="Salvar" update=":formPartida"/>
+		     
+		</h:form>
+		<br/><br/>
+		<p:link outcome="Menu" value="VOLTAR AO MENU PRINCIPAL"/>
+	</h:body>
+</html>

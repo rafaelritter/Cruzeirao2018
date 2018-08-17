@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>listarusuario</title>
+</h:head>
+	<h:body>
+		<h1>USUÁRIOS CADASTRADOS</h1>
+		<h:form>
+			<p:dataTable value="#{usuarioMB.usuarios}" var="usuario">
+		   
+				<p:column headerText="e-Mail">
+				<p:outputLabel value="#{usuario.email}"/>
+				</p:column>
+				 
+				<p:column headerText="Nome">
+				<p:outputLabel value="#{usuario.nome}"/>
+				</p:column>
+				
+				<p:column headerText="Data de Nascimento">
+				<h:outputText/>
+				<h:outputText value="#{usuario.dataNascimento}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+				</p:column>
+				
+				<p:column headerText="Telefone Fixo">
+				<p:outputLabel value="#{usuario.telefoneFixo}"/>
+				</p:column>
+				 
+				<p:column headerText="Telefone Móvel">
+				<p:outputLabel value="#{usuario.telefoneMovel}"/>
+				</p:column>
+				 
+				<p:column headerText="Endereço">
+				<p:outputLabel value="#{usuario.endereco}"/>
+				</p:column>
+				 
+				<p:column headerText="RG">
+				<p:outputLabel value="#{usuario.rg}"/>
+				</p:column>
+				 
+				<p:column headerText="CPF">
+				<p:outputLabel value="#{usuario.cpf}"/>
+				</p:column>
+				 
+				<p:column headerText="Sexo">
+				<p:outputLabel value="#{usuario.sexo}"/>
+				</p:column>
+				 
+				<p:column headerText="Opção 1" >
+				<p:commandLink action="#{usuarioMB.mostrarCampeonatos(usuario)}" value="Gerenciar Campeonatos" />
+				</p:column>
+				
+				<p:column headerText="Opção 2" >
+				<p:commandLink action="#{usuarioMB.mostrarEquipes(usuario)}" value="Gerenciar Equipes" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		<br/><br/>
+		<p:link outcome="Menu" value="VOLTAR AO MENU PRINCIPAL" />
+	</h:body>
+</html>

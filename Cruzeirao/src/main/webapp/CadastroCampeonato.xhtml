@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Cadastro de Campeonato</title>
+</h:head>
+<h:body>
+	<h1>CADASTRO DE CAMPEONATO</h1>
+	<h:form id="formCampeonato">
+		<h:panelGrid columns="2">
+			
+			<p:outputLabel value="Nome"/>
+			<p:inputText value="#{usuarioMB.campeonatoNovo.nome}"/>
+			
+			<p:outputLabel for="button" value="Data do Início das Inscrições" />
+			<p:calendar id="button" value="#{usuarioMB.campeonatoNovo.dataInicioInscricao}" showOn="button" />
+			
+			<p:outputLabel for="button2" value="Data do Término das Inscrições" />
+			<p:calendar id="button2" value="#{usuarioMB.campeonatoNovo.dataFimInscricao}" showOn="button" />
+			
+			<p:outputLabel for="button3" value="Data do Inicio do Campeonato" />
+			<p:calendar id="button3" value="#{usuarioMB.campeonatoNovo.dataInicioCampeonato}" showOn="button" />
+			
+			<p:outputLabel for="button4" value="Data do Término do Campeonato" />
+			<p:calendar id="button4" value="#{usuarioMB.campeonatoNovo.dataFimCampeonato}" showOn="button" />
+			
+			<p:outputLabel value="Valor da Taxa"/>
+			<p:inputText value="#{usuarioMB.campeonatoNovo.valorTaxa}"/>
+			
+		</h:panelGrid>
+		<br/>
+		<p:commandButton action="#{usuarioMB.salvarCampeonato}"  value="Salvar" update=":formCampeonato"/>
+	</h:form>
+	<br/><br/>
+	<p:link outcome="Menu" value ="VOLTAR AO MENU PRINCIPAL"/>
+</h:body>
+</html>

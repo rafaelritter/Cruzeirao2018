@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+>
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>fazerinscricao</title>
+</h:head>
+	<h:body>
+	<h1>INSCRIÇÃO DE TIME</h1>
+		<h:form id="formInscricao">
+			<h:panelGrid columns="2" cellpadding="5">
+			     
+				<p:outputLabel value="Número"/>
+				<p:inputText value="#{inscricaoMB.inscricao.numero}"/>
+				
+				<p:outputLabel value="Pagamento"/>
+				<p:inputText value="#{inscricaoMB.inscricao.pagamento}"/>
+				
+				<p:outputLabel value="Validada"/>
+				<p:inputText value="#{inscricaoMB.inscricao.validada}"/>
+			           
+			</h:panelGrid>
+			<br/>
+			<p:commandButton action="#{inscricaoMB.Salvar}" value="Salvar" update=":formInscricao"/>
+		</h:form>
+		<br/><br/>
+		<p:link outcome="Menu" value="VOLTAR AO MENU PRINCIPAL" />
+	</h:body>
+</html>
