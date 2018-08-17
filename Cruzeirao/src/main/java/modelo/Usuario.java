@@ -1,10 +1,17 @@
 package modelo;
 
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
 import java.util.ArrayList;
 
+@Entity
 public class Usuario {
 
+	@Id
 	private String email;
 	private String nome;
 	private Date dataNascimento;
@@ -14,7 +21,10 @@ public class Usuario {
 	private String rg;
 	private String cpf;
 	private String sexo;
+	
+	@Transient
 	private ArrayList <Equipe> equipes = new ArrayList <Equipe>();
+	@Transient
 	private ArrayList <Campeonato> campeonatos = new ArrayList <Campeonato>();
 
 	public void addEquipes(Equipe equipe) {
