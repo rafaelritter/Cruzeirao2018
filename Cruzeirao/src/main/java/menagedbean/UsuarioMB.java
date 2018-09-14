@@ -4,7 +4,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.util.List;
 import modelo.Usuario;
-
 import modelo.Campeonato;
 import modelo.Equipe;
 import auxiliar.UsuarioAux;

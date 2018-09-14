@@ -3,6 +3,7 @@ package modelo;
 import java.util.ArrayList;
 
 public class Rodada {
+	
 	private int numero;
 	private Grupo grupo;
 	

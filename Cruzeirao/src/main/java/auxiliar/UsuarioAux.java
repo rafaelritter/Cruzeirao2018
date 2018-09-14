@@ -13,7 +13,6 @@ import modelo.Usuario;
 public class UsuarioAux {
 	
 	private EntityManagerFactory emf;
-	
 	private ArrayList <Usuario> usuarios = Informacoes.Usuarios;
 	
 	public UsuarioAux() {
