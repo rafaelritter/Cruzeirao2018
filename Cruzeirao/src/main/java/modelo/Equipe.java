@@ -4,17 +4,34 @@ import java.util.Date;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.primefaces.event.SelectEvent;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+@Entity
 public class Equipe {
+	
+	@Id
+	@Column(name="Nome")
 	private String nome;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="Data de Fundação")
 	private Date dataFundacao;
+	
+	@Column(name="Cidade")
 	private String cidade;
+	
+	@Column(name="Usuário")
 	private Usuario usuario;
+	
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	private ArrayList<Inscricao> inscricoes = new ArrayList<Inscricao>();
 	

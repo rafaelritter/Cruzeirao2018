@@ -2,10 +2,22 @@ package modelo;
 
 import java.util.ArrayList;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Grupo {
-	private String nome;
-	private Fase fase;
+	
+	@Id
+	@Column(name="Número")
 	private int numero;
+	
+	@Column(name="Nome")
+	private String nome;
+	
+	@Column(name="Fase")
+	private Fase fase;
 	
 	private ArrayList<Rodada> listaRodada = new ArrayList<Rodada>();
 

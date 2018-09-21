@@ -2,10 +2,24 @@ package modelo;
 
 import java.util.ArrayList;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Inscricao {
+	
+	@Id
+	@Column(name="Número")
 	private long numero;
+	
+	@Column(name="Pagamento")
 	private boolean pagamento;
+	
+	@Column(name="Validada")
 	private boolean validada;
+	
+	@Column(name="Categoria")
 	private Categoria categoria;
 	
 	private ArrayList<Partida> listaPartida = new ArrayList<Partida>();

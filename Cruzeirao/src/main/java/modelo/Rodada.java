@@ -2,9 +2,18 @@ package modelo;
 
 import java.util.ArrayList;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Rodada {
 	
+	@Id
+	@Column(name="Numero")
 	private int numero;
+	
+	@Column(name="Grupo")
 	private Grupo grupo;
 	
 	private ArrayList<Partida> listaPartida = new ArrayList<Partida>();

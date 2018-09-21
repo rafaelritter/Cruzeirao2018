@@ -4,16 +4,41 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import org.primefaces.event.SelectEvent;
 
+@Entity
 public class Partida {
+	
+	@Id
+	@Column(name="Numero")
 	private int numero;
+	
+	@Column(name="Equipe Mandante")
 	private Inscricao equipeMandante;
+	
+	@Column(name="Equipe Visitante")
 	private Inscricao equipeVisitante;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="Data")
 	private Date data;
+	
+	@Column(name="Local")
 	private String local;
+	
+	@Column(name="Próxima partida")
 	private Partida proxPartida;
+	
+	@Column(name="Grupo")
 	private Grupo grupo;
+	
+	@Column(name="Relato do Juiz")
 	private String relatoJuiz;
 	
 	public void onDateSelect(SelectEvent event) {

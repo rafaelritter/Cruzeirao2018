@@ -5,17 +5,48 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import org.primefaces.event.SelectEvent;
 
+@Entity
 public class Campeonato {
+	
+	@Id
+	@Column(name="Nome")
 	private String nome;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="Data de início de inscrição")
 	private Date dataInicioInscricao;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="Data de fim de inscrição")
 	private Date dataFimInscricao;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="Data de início do campeonato")
 	private Date dataInicioCampeonato;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="Data de fim de campeonato")
 	private Date dataFimCampeonato;
+	
+	@Column(name="Valor da Taxa")
 	private double valorTaxa;
+	
+	@Column(name="Usuário")
 	private Usuario usuario;
+	
+	@OneToMany
 	private ArrayList<Categoria> categorias = new ArrayList<Categoria>();
+	
+	@OneToMany
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	
 	public void onDateSelect(SelectEvent event) {

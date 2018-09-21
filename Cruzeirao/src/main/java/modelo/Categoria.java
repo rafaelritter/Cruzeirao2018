@@ -2,12 +2,30 @@ package modelo;
 
 import java.util.ArrayList;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Categoria {
+	
+	@Id
+	@Column(name="Nome")
 	private String nome;
+	
+	@Column(name="Nascidos a partir de")
 	private int NascidosAPartirDe;
+	
+	@Column(name="Campeonato")
 	private Campeonato campeonato;
+	
+	@Column(name="Mínimo de Jogadores")
 	private int minJogadores;
+	
+	@Column(name="Máximo de Jogadores")
 	private int maxJogadores;
+	
+	@Column(name="Sexo")
 	private String sexo;
 	
 	private ArrayList<Inscricao> listaInscricao = new ArrayList<Inscricao>();

@@ -1,30 +1,53 @@
 package modelo;
 
 import java.util.Date;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-
 import java.util.ArrayList;
 
 @Entity
+@Table(name="Usuario")
 public class Usuario {
 
 	@Id
-	private String email;
-	private String nome;
-	private Date dataNascimento;
-	private String telefoneFixo;
-	private String telefoneMovel;
-	private String endereco;
-	private String rg;
+	@Column(name="CPF")
 	private String cpf;
+	
+	@Column(name="e-Mail")
+	private String email;
+	
+	@Column(name="Nome")
+	private String nome;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="Data de Nascimento")
+	private Date dataNascimento;
+	
+	@Column(name="Telefone Fixo")
+	private String telefoneFixo;
+	
+	@Column(name="Telefone Movel")
+	private String telefoneMovel;
+	
+	@Column(name="Endereço")
+	private String endereco;
+	
+	@Column(name="RG")
+	private String rg;
+	
+	@Column(name="Sexo")
 	private String sexo;
 	
-	@Transient
+	@OneToMany
 	private ArrayList <Equipe> equipes = new ArrayList <Equipe>();
-	@Transient
+	
+	@OneToMany
 	private ArrayList <Campeonato> campeonatos = new ArrayList <Campeonato>();
 
 	public void addEquipes(Equipe equipe) {
