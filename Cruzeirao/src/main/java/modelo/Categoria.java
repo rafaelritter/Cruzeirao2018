@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Categoria {
@@ -28,7 +31,12 @@ public class Categoria {
 	@Column(name="Sexo")
 	private String sexo;
 	
+	@OneToMany
+	@JoinColumn(name = "incricao_id")
 	private ArrayList<Inscricao> listaInscricao = new ArrayList<Inscricao>();
+	
+	//@ManyToMany
+	//@JoinColumn(name = "fase_id")
 	private ArrayList<Fase> listaFase = new ArrayList<Fase>();
 	
 	public String getNome() {

@@ -8,6 +8,9 @@ import javax.faces.context.FacesContext;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,13 +43,17 @@ public class Campeonato {
 	@Column(name="Valor da Taxa")
 	private double valorTaxa;
 	
-	@Column(name="Usuário")
 	private Usuario usuario;
 	
-	@OneToMany
+	
+	//@ManyToMany
+	//@JoinTable(name = "campeonato_categorias", joinColumns = { @JoinColumn(name = "campeonato_id") }, inverseJoinColumns = {
+	//@JoinColumn(name = "categoria_id") })
 	private ArrayList<Categoria> categorias = new ArrayList<Categoria>();
 	
-	@OneToMany
+	//@ManyToMany
+	//@JoinTable(name = "campeonato_usuarios", joinColumns = { @JoinColumn(name = "campeonato_id") }, inverseJoinColumns = {
+	//@JoinColumn(name = "usuarios_id") })
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	
 	public void onDateSelect(SelectEvent event) {
@@ -107,13 +114,6 @@ public class Campeonato {
 		this.valorTaxa = valorTaxa;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
 
 	public ArrayList<Categoria> getCategorias() {
 		return categorias;
@@ -129,5 +129,13 @@ public class Campeonato {
 
 	public void setUsuarios(ArrayList<Usuario> usuarios) {
 		this.usuarios = usuarios;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }

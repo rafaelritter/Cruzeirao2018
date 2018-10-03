@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Grupo {
@@ -19,6 +21,8 @@ public class Grupo {
 	@Column(name="Fase")
 	private Fase fase;
 	
+	@ManyToMany
+	@JoinColumn(name = "grupo_id")
 	private ArrayList<Rodada> listaRodada = new ArrayList<Rodada>();
 
 	public String getNome() {

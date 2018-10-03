@@ -13,10 +13,12 @@ import auxiliar.UsuarioAux;
 public class UsuarioMB {
 	
 	private UsuarioAux usuarioAux = new UsuarioAux();
-	private Usuario usuarioNovo = new Usuario();
 	private Equipe equipeNova;
 	private Campeonato campeonatoNovo;
 	private Usuario usuarioAtual;
+	
+	private Usuario usuarioNovo = new Usuario();
+	
 	
 	public UsuarioAux getUsuarioAux() {
 		return usuarioAux;

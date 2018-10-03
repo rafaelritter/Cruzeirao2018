@@ -13,11 +13,14 @@ import modelo.Usuario;
 public class UsuarioAux {
 	
 	private EntityManagerFactory emf;
-	private ArrayList <Usuario> usuarios = Informacoes.Usuarios;
 	
 	public UsuarioAux() {
-		emf = Persistence.createEntityManagerFactory("ProjetoMavenJSFPrimeFaces");
+		emf = Persistence.createEntityManagerFactory("Cruzeirao");
 	}
+	
+	
+	/*private ArrayList <Usuario> usuarios = Informacoes.Usuarios;
+	
 	
 	public Usuario getUsuarioCPF(String cpfusuario) {
 		
@@ -30,7 +33,7 @@ public class UsuarioAux {
 		}
 		return null;
 	}
-	
+	*/
 	public void salvar(Usuario usuario)
 	{
 		EntityManager em = emf.createEntityManager();
@@ -46,10 +49,18 @@ public class UsuarioAux {
 		List <Usuario>usuario;
 		
 		EntityManager em = emf.createEntityManager();
-		Query q = em.createQuery("Select a From Aluno a");
+		Query q = em.createQuery("Select a From Usuario a");
 		usuario = q.getResultList();
 		em.close();
 		
 		return usuario;
+	}
+	
+public Usuario getUsuarioCPF(String cpf) {
+		
+		EntityManager em = emf.createEntityManager();
+		Usuario user = em.find(Usuario.class,cpf);
+		em.close();
+		return user;
 	}
 }

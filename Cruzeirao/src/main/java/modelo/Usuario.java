@@ -1,9 +1,15 @@
 package modelo;
 
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -44,11 +50,22 @@ public class Usuario {
 	@Column(name="Sexo")
 	private String sexo;
 	
-	@OneToMany
+	private Usuario usuario;
+	
+	//@ManyToMany
+	//@JoinTable(name = "usuario_equipes", joinColumns = { @JoinColumn(name = "usuario_id") }, inverseJoinColumns = {
+	//@JoinColumn(name = "usuario_id")
 	private ArrayList <Equipe> equipes = new ArrayList <Equipe>();
 	
-	@OneToMany
-	private ArrayList <Campeonato> campeonatos = new ArrayList <Campeonato>();
+	//@OneToMany
+	//@JoinColumn(name = "usuario_id")
+	private List<Inscricao> inscricoes = new ArrayList<Inscricao>();
+
+	//@OneToMany
+	//@JoinTable(name = "campeonato_usuarios", joinColumns = @JoinColumn(name = "usuario_id") , inverseJoinColumns = @JoinColumn(name = "campeonato_id") )
+	//@JoinColumn(name = "usuario_id")
+	private List<Campeonato> campeonatos = new ArrayList<Campeonato>();
+
 
 	public void addEquipes(Equipe equipe) {
 		equipes.add(equipe);
@@ -138,11 +155,19 @@ public class Usuario {
 		this.equipes = equipes;
 	}
 
-	public ArrayList<Campeonato> getCampeonatos() {
+	public List<Campeonato> getCampeonatos() {
 		return campeonatos;
 	}
 
 	public void setCampeonatos(ArrayList<Campeonato> campeonatos) {
 		this.campeonatos = campeonatos;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }

@@ -8,6 +8,8 @@ import javax.faces.context.FacesContext;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.primefaces.event.SelectEvent;
@@ -30,6 +32,8 @@ public class Fase {
 	@Column(name="Categoria")
 	private Categoria categoria;
 	
+	@ManyToMany
+	@JoinColumn(name = "fase_id")
 	private ArrayList<Grupo> listaGrupo = new ArrayList<Grupo>();
 	
 	public void onDateSelect(SelectEvent event) {

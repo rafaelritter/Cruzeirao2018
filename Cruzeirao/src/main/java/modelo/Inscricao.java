@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Inscricao {
@@ -22,6 +24,8 @@ public class Inscricao {
 	@Column(name="Categoria")
 	private Categoria categoria;
 	
+	@ManyToMany
+	@JoinColumn(name = "partida_id")
 	private ArrayList<Partida> listaPartida = new ArrayList<Partida>();
 	
 	public long getNumero() {

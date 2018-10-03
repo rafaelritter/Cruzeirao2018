@@ -7,6 +7,10 @@ import javax.faces.context.FacesContext;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -29,10 +33,15 @@ public class Equipe {
 	@Column(name="Cidade")
 	private String cidade;
 	
-	@Column(name="Usuário")
 	private Usuario usuario;
 	
+	//@ManyToMany
+	//@JoinTable(name = "equipe_usuarios", joinColumns = { @JoinColumn(name = "equipe_id") }, inverseJoinColumns = {
+	//@JoinColumn(name = "usuario_id") })
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+	
+	//@OneToMany
+	//@JoinColumn(name = "equipe_id")
 	private ArrayList<Inscricao> inscricoes = new ArrayList<Inscricao>();
 	
 	public void onDateSelect(SelectEvent event) {
@@ -65,14 +74,6 @@ public class Equipe {
 		this.cidade = cidade;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuarioAtual) {
-		this.usuario = usuarioAtual;
-		
-	}
 
 	public ArrayList<Usuario> getUsuarios() {
 		return usuarios;
@@ -89,4 +90,14 @@ public class Equipe {
 	public void setInscricoes(ArrayList<Inscricao> inscricoes) {
 		this.inscricoes = inscricoes;
 	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	
 }
