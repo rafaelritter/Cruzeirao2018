@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -18,18 +17,14 @@ import org.primefaces.event.SelectEvent;
 public class Fase {
 	
 	@Id
-	@Column(name="Número")
 	private int numero;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name="Data de Início")
 	private Date dataInicio;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name="data de Fim")
 	private Date dataFim;
 	
-	@Column(name="Categoria")
 	private Categoria categoria;
 	
 	@ManyToMany

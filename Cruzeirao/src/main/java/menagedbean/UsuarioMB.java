@@ -16,9 +16,17 @@ public class UsuarioMB {
 	private Equipe equipeNova;
 	private Campeonato campeonatoNovo;
 	private Usuario usuarioAtual;
-	
 	private Usuario usuarioNovo = new Usuario();
+	private List<Usuario> usuarios;
 	
+	public List <Usuario> getUsuarios()
+	{
+		if(usuarios == null)
+			usuarios = usuarioAux.getUsuarios();
+		
+		return usuarios;
+		
+	}
 	
 	public UsuarioAux getUsuarioAux() {
 		return usuarioAux;
@@ -60,34 +68,39 @@ public class UsuarioMB {
 		this.usuarioAtual = usuarioAtual;
 	}
 
-	public List <Usuario> getUsuarios() {
-		return usuarioAux.getUsuarios();
-	}
-	
 	public String mostrarCPFCampeonatos(String cpf) {
-		usuarioAtual = usuarioAux.getUsuarioCPF(cpf);
+		usuarioAtual = (Usuario)usuarioAux.getUsuarioCPF(cpf);
 		return "Campeonato-Usuario";
 	}
 	
-	public String mostrarCampeonatos(Usuario usuario) {
-		usuarioAtual = usuarioAux.getUsuarioCPF(usuario.getCpf());
+	public String mostrarCampeonatos(String cpf) {
+		usuarioAtual = (Usuario) usuarioAux.getUsuarioCPF(cpf);
 		return "Campeonato-Usuario";
 	}
 	
 	public String mostrarCPFEquipes(String cpf) {
-		usuarioAtual = usuarioAux.getUsuarioCPF(cpf);
+		usuarioAtual = (Usuario)usuarioAux.getUsuarioCPF(cpf);
 		return "Equipe-Usuario";
 	}
 	
 	public String mostrarEquipes(Usuario usuario) {
-		usuarioAtual = usuarioAux.getUsuarioCPF(usuario.getCpf());
+		usuarioAtual = (Usuario)usuarioAux.getUsuarioCPF(usuario.getCpf());
 		return "Equipe-Usuario";
 	}
 	
-	public String salvar() {
+	public void salvar() {
 		usuarioAux.salvar(usuarioNovo);
+		
+		if(usuarios != null) {
+			usuarios.add(usuarioNovo);
+		}
+		
 		usuarioNovo = new Usuario();
-		return "Menu";
+	}
+	
+	public void excluir(Usuario usuario) {
+		usuarioAux.excluir(usuario);
+		usuarios.remove(usuario);
 	}
 	
 	public String criarCampeonatos() {

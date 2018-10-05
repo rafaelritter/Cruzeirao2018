@@ -4,66 +4,55 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import java.util.ArrayList;
 
 @Entity
-@Table(name="Usuario")
+@NamedQueries 
+({
+	@NamedQuery(name="Usuario.findCPF", 
+			query=" Select u From Usuario u Where u.cpf = :cpf")
+})
 public class Usuario {
 
 	@Id
-	@Column(name="CPF")
 	private String cpf;
 	
-	@Column(name="e-Mail")
 	private String email;
 	
-	@Column(name="Nome")
 	private String nome;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name="Data de Nascimento")
 	private Date dataNascimento;
 	
-	@Column(name="Telefone Fixo")
 	private String telefoneFixo;
 	
-	@Column(name="Telefone Movel")
 	private String telefoneMovel;
 	
-	@Column(name="Endereço")
 	private String endereco;
 	
-	@Column(name="RG")
 	private String rg;
 	
-	@Column(name="Sexo")
 	private String sexo;
 	
 	private Usuario usuario;
 	
-	//@ManyToMany
-	//@JoinTable(name = "usuario_equipes", joinColumns = { @JoinColumn(name = "usuario_id") }, inverseJoinColumns = {
-	//@JoinColumn(name = "usuario_id")
+	@ManyToMany(mappedBy="usuarios")
 	private ArrayList <Equipe> equipes = new ArrayList <Equipe>();
 	
-	//@OneToMany
-	//@JoinColumn(name = "usuario_id")
-	private List<Inscricao> inscricoes = new ArrayList<Inscricao>();
-
-	//@OneToMany
-	//@JoinTable(name = "campeonato_usuarios", joinColumns = @JoinColumn(name = "usuario_id") , inverseJoinColumns = @JoinColumn(name = "campeonato_id") )
-	//@JoinColumn(name = "usuario_id")
+	@OneToMany(cascade=CascadeType.PERSIST)
+	@JoinTable(name="TBLUserCamp", 
+	joinColumns=@JoinColumn(name="id_usuario"),
+	inverseJoinColumns=@JoinColumn(name="id_campeonato"))
 	private List<Campeonato> campeonatos = new ArrayList<Campeonato>();
 
 
@@ -170,4 +159,9 @@ public class Usuario {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	public void setCampeonatos(List<Campeonato> campeonatos) {
+		this.campeonatos = campeonatos;
+	}
+	
 }

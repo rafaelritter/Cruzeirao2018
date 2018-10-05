@@ -1,16 +1,11 @@
 package modelo;
 
-import javax.persistence.Column;
-
 public class Cartao {
 	
-	@Column(name="Inscrito")
 	private Inscricao inscrito;
 	
-	@Column(name="Tipo")
 	private String tipo;
 	
-	@Column(name="Tempo")
 	private int tempo;
 	
 	public Inscricao getInscrito() {

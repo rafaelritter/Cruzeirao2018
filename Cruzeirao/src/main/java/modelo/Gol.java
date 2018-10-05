@@ -1,16 +1,11 @@
 package modelo;
 
-import javax.persistence.Column;
-
 public class Gol {
 	
-	@Column(name="Inscrito")
 	private Inscricao inscrito;
 	
-	@Column(name="Tempo")
 	private int tempo;
 	
-	@Column(name="Penalte")
 	private boolean penalty;
 	
 	public Inscricao getInscrito() {

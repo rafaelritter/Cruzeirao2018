@@ -1,8 +1,6 @@
 package auxiliar;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -18,22 +16,6 @@ public class UsuarioAux {
 		emf = Persistence.createEntityManagerFactory("Cruzeirao");
 	}
 	
-	
-	/*private ArrayList <Usuario> usuarios = Informacoes.Usuarios;
-	
-	
-	public Usuario getUsuarioCPF(String cpfusuario) {
-		
-		for(int i=0; i< usuarios.size(); i++)
-		{
-			if(cpfusuario == usuarios.get(i).getCpf())
-			{
-				return usuarios.get(i);
-			}
-		}
-		return null;
-	}
-	*/
 	public void salvar(Usuario usuario)
 	{
 		EntityManager em = emf.createEntityManager();
@@ -41,6 +23,23 @@ public class UsuarioAux {
 		em.persist(usuario);
 		em.getTransaction().commit();	
 	    em.close();
+	}
+	
+	public void excluir(Usuario usuario) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		usuario = em.find(Usuario.class, usuario.getCpf());
+		em.remove(usuario);
+		em.getTransaction().commit();
+		em.close();
+	}
+	
+	public void alterar(Usuario usuario) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.merge(usuario);
+		em.getTransaction().commit();
+		em.close();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -56,11 +55,23 @@ public class UsuarioAux {
 		return usuario;
 	}
 	
-public Usuario getUsuarioCPF(String cpf) {
+	public Usuario teste(String cpf) {
 		
 		EntityManager em = emf.createEntityManager();
 		Usuario user = em.find(Usuario.class,cpf);
 		em.close();
 		return user;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Usuario> getUsuarioCPF(String cpf) {
+		List<Usuario> usuarios;
+		
+		EntityManager em = emf.createEntityManager();
+		usuarios = em.createNamedQuery("Usuario.findCPF").getResultList();
+		em.setProperty("CPF", cpf);
+		em.close();
+		
+		return usuarios;
 	}
 }

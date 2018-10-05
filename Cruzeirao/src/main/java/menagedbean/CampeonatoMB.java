@@ -16,7 +16,6 @@ public class CampeonatoMB {
 	private Campeonato campeonatoAtual;
 	private Categoria categoriaNova;
 	
-	
 	public CampeonatoAux getCampeonatoAux() {
 		return campeonatoAux;
 	}
@@ -54,12 +53,12 @@ public class CampeonatoMB {
 	}
 	
 	public String mostrarCategorias(Campeonato campeonato) {
-		campeonatoAtual = campeonatoAux.getNomeCampeonato(campeonato.getNome());
+		campeonatoAtual = (Campeonato)campeonatoAux.getNomeCampeonato(campeonato.getNome());
 		return "Categoria-Campeonato";
 	}
 	
 	public String mostrarNomeCategorias(String nome) {
-		campeonatoAtual = campeonatoAux.getNomeCampeonato(nome);
+		campeonatoAtual = (Campeonato)campeonatoAux.getNomeCampeonato(nome);
 		return "Categoria-Campeonato";
 	}
 	

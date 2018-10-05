@@ -2,42 +2,36 @@ package modelo;
 
 import java.util.ArrayList;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Categoria {
 	
 	@Id
-	@Column(name="Nome")
 	private String nome;
 	
-	@Column(name="Nascidos a partir de")
 	private int NascidosAPartirDe;
 	
-	@Column(name="Campeonato")
-	private Campeonato campeonato;
-	
-	@Column(name="Mínimo de Jogadores")
 	private int minJogadores;
 	
-	@Column(name="Máximo de Jogadores")
 	private int maxJogadores;
 	
-	@Column(name="Sexo")
 	private String sexo;
 	
-	@OneToMany
-	@JoinColumn(name = "incricao_id")
-	private ArrayList<Inscricao> listaInscricao = new ArrayList<Inscricao>();
+	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="categoria")
+	private ArrayList<Inscricao> inscricoes = new ArrayList<>();
 	
-	//@ManyToMany
-	//@JoinColumn(name = "fase_id")
-	private ArrayList<Fase> listaFase = new ArrayList<Fase>();
+	@ManyToOne
+	@JoinColumn(name="idCampeonato")
+	private Campeonato campeonato;
+	
+	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="categoria")
+	private ArrayList<Fase> fases = new ArrayList<Fase>();
 	
 	public String getNome() {
 		return nome;
@@ -51,23 +45,11 @@ public class Categoria {
 	public void setNascidosAPartirDe(int nascidosAPartirDe) {
 		NascidosAPartirDe = nascidosAPartirDe;
 	}
-	public ArrayList<Inscricao> getListaInscricao() {
-		return listaInscricao;
-	}
-	public void setListaInscricao(ArrayList<Inscricao> listaInscricao) {
-		this.listaInscricao = listaInscricao;
-	}
 	public Campeonato getCampeonato() {
 		return campeonato;
 	}
 	public void setCampeonato(Campeonato campeonato) {
 		this.campeonato = campeonato;
-	}
-	public ArrayList<Fase> getListaFase() {
-		return listaFase;
-	}
-	public void setListaFase(ArrayList<Fase> listaFase) {
-		this.listaFase = listaFase;
 	}
 	public int getMinJogadores() {
 		return minJogadores;
@@ -86,5 +68,17 @@ public class Categoria {
 	}
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
+	}
+	public ArrayList<Inscricao> getInscricoes() {
+		return inscricoes;
+	}
+	public void setInscricoes(ArrayList<Inscricao> inscricoes) {
+		this.inscricoes = inscricoes;
+	}
+	public ArrayList<Fase> getFases() {
+		return fases;
+	}
+	public void setFases(ArrayList<Fase> fases) {
+		this.fases = fases;
 	}
 }

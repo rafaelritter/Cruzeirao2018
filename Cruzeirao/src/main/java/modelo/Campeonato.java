@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,42 +20,39 @@ import javax.persistence.TemporalType;
 import org.primefaces.event.SelectEvent;
 
 @Entity
+@NamedQueries 
+({
+	@NamedQuery(name="Campeonato.findNome", 
+			query=" Select c From Campeonato c Where c.nome = :nome")
+})
 public class Campeonato {
 	
 	@Id
-	@Column(name="Nome")
 	private String nome;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name="Data de início de inscrição")
 	private Date dataInicioInscricao;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name="Data de fim de inscrição")
 	private Date dataFimInscricao;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name="Data de início do campeonato")
 	private Date dataInicioCampeonato;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name="Data de fim de campeonato")
 	private Date dataFimCampeonato;
 	
-	@Column(name="Valor da Taxa")
 	private double valorTaxa;
 	
 	private Usuario usuario;
 	
-	
-	//@ManyToMany
-	//@JoinTable(name = "campeonato_categorias", joinColumns = { @JoinColumn(name = "campeonato_id") }, inverseJoinColumns = {
-	//@JoinColumn(name = "categoria_id") })
+	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="campeonato")
 	private ArrayList<Categoria> categorias = new ArrayList<Categoria>();
 	
-	//@ManyToMany
-	//@JoinTable(name = "campeonato_usuarios", joinColumns = { @JoinColumn(name = "campeonato_id") }, inverseJoinColumns = {
-	//@JoinColumn(name = "usuarios_id") })
+	@ManyToMany
+	@JoinTable(name="TBLUserCamp", 
+	joinColumns=@JoinColumn(name="id_usuario"),
+	inverseJoinColumns=@JoinColumn(name="id_campeonato"))
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	
 	public void onDateSelect(SelectEvent event) {

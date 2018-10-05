@@ -1,8 +1,6 @@
 package modelo;
 
 import java.util.ArrayList;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -12,13 +10,10 @@ import javax.persistence.ManyToMany;
 public class Grupo {
 	
 	@Id
-	@Column(name="Número")
 	private int numero;
 	
-	@Column(name="Nome")
 	private String nome;
 	
-	@Column(name="Fase")
 	private Fase fase;
 	
 	@ManyToMany

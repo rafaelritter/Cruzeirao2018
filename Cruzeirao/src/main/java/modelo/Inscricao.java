@@ -1,32 +1,32 @@
 package modelo;
 
 import java.util.ArrayList;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Inscricao {
 	
 	@Id
-	@Column(name="Número")
 	private long numero;
 	
-	@Column(name="Pagamento")
 	private boolean pagamento;
 	
-	@Column(name="Validada")
 	private boolean validada;
 	
-	@Column(name="Categoria")
-	private Categoria categoria;
+	@Transient
+	private ArrayList<Partida> partidas = new ArrayList<>();
 	
-	@ManyToMany
-	@JoinColumn(name = "partida_id")
-	private ArrayList<Partida> listaPartida = new ArrayList<Partida>();
+	@ManyToOne
+	@JoinColumn(name="idEquipe")
+	private Equipe equipe = new Equipe();
+	
+	@ManyToOne
+	@JoinColumn(name="idCategoria")
+	private Categoria categoria = new Categoria();
 	
 	public long getNumero() {
 		return numero;
@@ -46,16 +46,23 @@ public class Inscricao {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	public ArrayList<Partida> getListaPartida() {
-		return listaPartida;
-	}
-	public void setListaPartida(ArrayList<Partida> listaPartida) {
-		this.listaPartida = listaPartida;
-	}
+	
 	public boolean isValidada() {
 		return validada;
 	}
 	public void setValidada(boolean validada) {
 		this.validada = validada;
+	}
+	public ArrayList<Partida> getPartidas() {
+		return partidas;
+	}
+	public void setPartidas(ArrayList<Partida> partidas) {
+		this.partidas = partidas;
+	}
+	public Equipe getEquipe() {
+		return equipe;
+	}
+	public void setEquipe(Equipe equipe) {
+		this.equipe = equipe;
 	}
 }

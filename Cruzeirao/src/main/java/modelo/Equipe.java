@@ -4,11 +4,11 @@ import java.util.Date;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -23,25 +23,22 @@ import java.util.ArrayList;
 public class Equipe {
 	
 	@Id
-	@Column(name="Nome")
 	private String nome;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name="Data de Fundação")
 	private Date dataFundacao;
 	
-	@Column(name="Cidade")
 	private String cidade;
 	
 	private Usuario usuario;
 	
-	//@ManyToMany
-	//@JoinTable(name = "equipe_usuarios", joinColumns = { @JoinColumn(name = "equipe_id") }, inverseJoinColumns = {
-	//@JoinColumn(name = "usuario_id") })
+	@ManyToMany
+	@JoinTable(name="TBL_UsuarioEquipe",
+	joinColumns = @JoinColumn(name="idEquipe"),
+	inverseJoinColumns = @JoinColumn(name="idUsuario"))
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	
-	//@OneToMany
-	//@JoinColumn(name = "equipe_id")
+	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="equipe")
 	private ArrayList<Inscricao> inscricoes = new ArrayList<Inscricao>();
 	
 	public void onDateSelect(SelectEvent event) {
@@ -98,6 +95,4 @@ public class Equipe {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
-	
 }
