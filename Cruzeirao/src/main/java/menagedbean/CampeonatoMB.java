@@ -5,6 +5,7 @@ import javax.faces.bean.SessionScoped;
 import java.util.List;
 import modelo.Campeonato;
 import modelo.Categoria;
+import modelo.Usuario;
 import auxiliar.CampeonatoAux;
 
 @ManagedBean
@@ -49,16 +50,16 @@ public class CampeonatoMB {
 	}
 
 	public List <Campeonato> getCampeonatos() {
-		return campeonatoAux.getCampeonatos();
+		return campeonatoAux.getAll(Campeonato.class);
 	}
 	
 	public String mostrarCategorias(Campeonato campeonato) {
-		campeonatoAtual = (Campeonato)campeonatoAux.getNomeCampeonato(campeonato.getNome());
+		campeonatoAtual = (Campeonato)campeonatoAux.getById(Campeonato.class,campeonatoAtual.getNome());
 		return "Categoria-Campeonato";
 	}
 	
 	public String mostrarNomeCategorias(String nome) {
-		campeonatoAtual = (Campeonato)campeonatoAux.getNomeCampeonato(nome);
+		campeonatoAtual = (Campeonato)campeonatoAux.getById(Campeonato.class,campeonatoAtual.getNome());
 		return "Categoria-Campeonato";
 	}
 	
@@ -74,7 +75,7 @@ public class CampeonatoMB {
 	}
 	
 	public String salvar() {
-		campeonatoAux.salvar(campeonatoNovo);
+		campeonatoAux.save(campeonatoNovo);
 		campeonatoNovo = new Campeonato();
 		return "Menu";
 	}

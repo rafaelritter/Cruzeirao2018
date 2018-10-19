@@ -39,11 +39,11 @@ public class EquipeMB {
 	}
 
 	public List <Equipe> getEquipes() {
-		return equipeAux.getEquipes();
+		return equipeAux.getAll(Equipe.class);
 	}
 	
 	public String salvar() {
-		equipeAux.salvar(equipeNova);
+		equipeAux.save(equipeNova);
 		equipeNova = new Equipe();
 		return "Menu";
 	}
