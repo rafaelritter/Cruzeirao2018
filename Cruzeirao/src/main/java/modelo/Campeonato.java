@@ -1,34 +1,33 @@
 package modelo;
 
 import java.text.SimpleDateFormat;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.CascadeType;
-import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.primefaces.event.SelectEvent;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.primefaces.event.SelectEvent;
 
 @Entity
-@NamedQueries 
-({
-	@NamedQuery(name="Campeonato.findNome", 
-			query=" Select c From Campeonato c Where c.nome = :nome")
-})
 public class Campeonato {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long campeonatoId;
+	
 	private String nome;
+	private double valorTaxa;
+	private Usuario usuario;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataInicioInscricao;
@@ -42,17 +41,13 @@ public class Campeonato {
 	@Temporal(TemporalType.DATE)
 	private Date dataFimCampeonato;
 	
-	private double valorTaxa;
-	
-	private Usuario usuario;
-	
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="campeonato")
 	private ArrayList<Categoria> categorias = new ArrayList<Categoria>();
 	
 	@ManyToMany
-	@JoinTable(name="TBLUserCamp", 
-	joinColumns=@JoinColumn(name="id_usuario"),
-	inverseJoinColumns=@JoinColumn(name="id_campeonato"))
+	@JoinTable(name="tb_campeonato-usuario", 
+	joinColumns=@JoinColumn(name="usuarioId"),
+	inverseJoinColumns=@JoinColumn(name="campeonatoId"))
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	
 	public void onDateSelect(SelectEvent event) {
@@ -61,8 +56,12 @@ public class Campeonato {
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
     }
 
-	public void addCategorias(Categoria categoria) {
-		categorias.add(categoria);
+	public long getCampeonatoId() {
+		return campeonatoId;
+	}
+
+	public void setCampeonatoId(long campeonatoId) {
+		this.campeonatoId = campeonatoId;
 	}
 
 	public String getNome() {
@@ -71,6 +70,22 @@ public class Campeonato {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public double getValorTaxa() {
+		return valorTaxa;
+	}
+
+	public void setValorTaxa(double valorTaxa) {
+		this.valorTaxa = valorTaxa;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Date getDataInicioInscricao() {
@@ -105,15 +120,6 @@ public class Campeonato {
 		this.dataFimCampeonato = dataFimCampeonato;
 	}
 
-	public double getValorTaxa() {
-		return valorTaxa;
-	}
-
-	public void setValorTaxa(double valorTaxa) {
-		this.valorTaxa = valorTaxa;
-	}
-
-
 	public ArrayList<Categoria> getCategorias() {
 		return categorias;
 	}
@@ -128,13 +134,5 @@ public class Campeonato {
 
 	public void setUsuarios(ArrayList<Usuario> usuarios) {
 		this.usuarios = usuarios;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 }

@@ -4,30 +4,34 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.util.List;
 import modelo.Equipe;
-import auxiliar.EquipeAux;
+import service.EquipeService;
 
 @ManagedBean
 @SessionScoped
 public class EquipeMB {
 
-	private EquipeAux equipeAux = new EquipeAux();
+	private EquipeService equipeService = new EquipeService();
 	private Equipe equipe = new Equipe();
 	private Equipe equipeNova;
+	private List<Equipe> equipes;
 	
-	public EquipeAux getEquipeAux() {
-		return equipeAux;
+	public String salvar() {
+		equipeService.salvar(equipeNova);
+		equipeNova = new Equipe();
+		return "Menu";
+	}
+	
+	public void remover(Equipe equipe) {
+		equipeService.remover(equipe);
+		equipes.remove(equipe);
 	}
 
-	public void setEquipeAux(EquipeAux equipeAux) {
-		this.equipeAux = equipeAux;
+	public EquipeService getEquipeService() {
+		return equipeService;
 	}
 
-	public Equipe getEquipeNova() {
-		return equipeNova;
-	}
-
-	public void setEquipeNova(Equipe equipeNova) {
-		this.equipeNova = equipeNova;
+	public void setEquipeService(EquipeService equipeService) {
+		this.equipeService = equipeService;
 	}
 
 	public Equipe getEquipe() {
@@ -38,13 +42,19 @@ public class EquipeMB {
 		this.equipe = equipe;
 	}
 
-	public List <Equipe> getEquipes() {
-		return equipeAux.getAll(Equipe.class);
+	public Equipe getEquipeNova() {
+		return equipeNova;
 	}
-	
-	public String salvar() {
-		equipeAux.save(equipeNova);
-		equipeNova = new Equipe();
-		return "Menu";
+
+	public void setEquipeNova(Equipe equipeNova) {
+		this.equipeNova = equipeNova;
+	}
+
+	public List<Equipe> getEquipes() {
+		return equipeService.getEquipes();
+	}
+
+	public void setEquipes(List<Equipe> equipes) {
+		this.equipes = equipes;
 	}
 }

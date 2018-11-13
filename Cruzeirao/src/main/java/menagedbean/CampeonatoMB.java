@@ -4,25 +4,48 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.util.List;
 import modelo.Campeonato;
-import modelo.Categoria;
-import modelo.Usuario;
-import auxiliar.CampeonatoAux;
+import service.CampeonatoService;
 
 @ManagedBean
 @SessionScoped
 public class CampeonatoMB {
 
-	private CampeonatoAux campeonatoAux = new CampeonatoAux();
+	private CampeonatoService campeonatoService = new CampeonatoService();
 	private Campeonato campeonatoNovo = new Campeonato();
 	private Campeonato campeonatoAtual;
-	private Categoria categoriaNova;
+	private List<Campeonato> campeonatos;
 	
-	public CampeonatoAux getCampeonatoAux() {
-		return campeonatoAux;
+	public String salvar() {
+		campeonatoService.salvar(campeonatoNovo);
+		campeonatoNovo = new Campeonato();
+		return "Menu";
+	}
+	
+	public void remover(Campeonato campeonato) {
+		campeonatoService.remover(campeonato);
+		campeonatos.remove(campeonato);
+	}
+	
+	public List <Campeonato> getCampeonatos()
+	{
+		if(campeonatos == null)
+		{
+			campeonatos = campeonatoService.getCampeonatos();
+		}
+		
+		return campeonatos;
+	}
+	
+	public void setCampeonatos(List<Campeonato> campeonatos) {
+		this.campeonatos = campeonatos;
 	}
 
-	public void setCampeonatoAux(CampeonatoAux campeonatoAux) {
-		this.campeonatoAux = campeonatoAux;
+	public CampeonatoService getCampeonatoService() {
+		return campeonatoService;
+	}
+
+	public void setCampeonatoService(CampeonatoService campeonatoService) {
+		this.campeonatoService = campeonatoService;
 	}
 
 	public Campeonato getCampeonatoNovo() {
@@ -39,44 +62,5 @@ public class CampeonatoMB {
 
 	public void setCampeonatoAtual(Campeonato campeonatoAtual) {
 		this.campeonatoAtual = campeonatoAtual;
-	}
-
-	public Categoria getCategoriaNova() {
-		return categoriaNova;
-	}
-
-	public void setCategoriaNova(Categoria categoriaNova) {
-		this.categoriaNova = categoriaNova;
-	}
-
-	public List <Campeonato> getCampeonatos() {
-		return campeonatoAux.getAll(Campeonato.class);
-	}
-	
-	public String mostrarCategorias(Campeonato campeonato) {
-		campeonatoAtual = (Campeonato)campeonatoAux.getById(Campeonato.class,campeonatoAtual.getNome());
-		return "Categoria-Campeonato";
-	}
-	
-	public String mostrarNomeCategorias(String nome) {
-		campeonatoAtual = (Campeonato)campeonatoAux.getById(Campeonato.class,campeonatoAtual.getNome());
-		return "Categoria-Campeonato";
-	}
-	
-	public String criarCategorias() {
-		categoriaNova = new Categoria();
-		return "CadastroCategoria";
-	}
-	
-	public String salvarCategoria() {
-		campeonatoAtual.addCategorias(categoriaNova);
-		categoriaNova.setCampeonato(campeonatoAtual);
-		return "Categoria-Campeonato";
-	}
-	
-	public String salvar() {
-		campeonatoAux.save(campeonatoNovo);
-		campeonatoNovo = new Campeonato();
-		return "Menu";
 	}
 }

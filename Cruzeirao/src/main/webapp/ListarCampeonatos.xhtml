@@ -16,7 +16,7 @@
 	<h1>CAMPEONATOS CADASTRADOS</h1>
 		<h:form>
 			
-			<p:dataTable var="campeonato" value="#{usuarioMB.usuarioAtual.campeonatos}">
+			<p:dataTable var="campeonato" value="#{usuarioMB.usuarioAtual.campeonatos}" id="TabelaCampeonato" >
 			
 				<p:column headerText="Nome">
 				<p:outputLabel value="#{campeonato.nome}"/>
@@ -54,13 +54,17 @@
 				<p:outputLabel value="#{campeonato.valorTaxa}"/>
 				</p:column>
 				
-				<p:column headerText="Opções">
+				<p:column headerText="Opção 1">
+				<p:link action="#{CampeonatoMB.remover(campeonato)}" value = "Excluir" update="TabelaCampeonato" />
+				</p:column>
+				
+				<p:column headerText="Opção 2">
 				<p:link outcome = "CadastroCategoria" value = "Gerenciar Categorias"/>
 				</p:column>
 				
 			</p:dataTable>
 			<h1>OPÇÕES</h1>
-			<p:link outcome="#{usuarioMB.criarCampeonatos()}" value ="CADASTRAR NOVO CAMPEONATO"/>
+			<p:link action="#{usuarioMB.criarCampeonatos()}" value ="CADASTRAR NOVO CAMPEONATO"/>
 		</h:form>
 		<br/>
 		<p:link outcome="Menu" value ="VOLTAR AO MENU PRINCIPAL"/>

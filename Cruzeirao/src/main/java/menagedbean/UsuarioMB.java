@@ -6,34 +6,126 @@ import java.util.List;
 import modelo.Usuario;
 import modelo.Campeonato;
 import modelo.Equipe;
-import auxiliar.UsuarioAux;
+import service.CampeonatoService;
+import service.EquipeService;
+import service.UsuarioService;
 
 @ManagedBean
 @SessionScoped
 public class UsuarioMB {
 	
-	private UsuarioAux usuarioAux = new UsuarioAux();
-	private Equipe equipeNova;
-	private Campeonato campeonatoNovo;
-	private Usuario usuarioAtual;
+	private UsuarioService usuarioService = new UsuarioService();
+	private CampeonatoService campeonatoService = new CampeonatoService();
+	private EquipeService equipeService = new EquipeService();
+	
 	private Usuario usuarioNovo = new Usuario();
+	private Campeonato campeonatoNovo = new Campeonato();
+	private Equipe equipeNova = new Equipe();
+	
+	private Usuario usuarioAtual;
 	private List<Usuario> usuarios;
 	
-	public List <Usuario> getUsuarios()
-	{
-		if(usuarios == null)
-			usuarios = usuarioAux.getAll(Usuario.class);
-		
-		return usuarios;
-		
+	public void salvar() {
+		usuarioService.salvar(usuarioNovo);
+		if(usuarios != null) 
+		{
+			usuarios.add(usuarioNovo);
+		}
+		usuarioNovo = new Usuario();
 	}
 	
-	public UsuarioAux getUsuarioAux() {
-		return usuarioAux;
+	public void remover(Usuario usuario) {
+		usuarioService.remover(usuario);
+		usuarios.remove(usuario);
+	}
+	
+	public List <Usuario> getUsuarios() {
+		if(usuarios == null)
+		{
+			usuarios = usuarioService.getUsuarios();
+		}
+		return usuarios;
+	}
+	
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+	
+	public String mostrarCampeonatos(Usuario usuario)
+	{
+		usuarioAtual = usuarioService.getCampeonatosUsuario(usuario);
+		return "Campeonato-Usuario";
+	}
+	
+	public String mostrarEquipes(Usuario usuario)
+	{
+		usuarioAtual = usuarioService.getUsuarioById(usuario.getUsuarioId());
+		return "Equipe-Usuario";
+	}
+	
+	public void getCampeonatos(Usuario usuario) {
+		usuarioAtual = usuarioService.getCampeonatosUsuario(usuario);
+	}
+	
+	public String criarEquipes()
+	{
+		equipeNova = new Equipe();
+		return "CadastroEquipe";
+	}
+	
+	public String criarCampeonatos()
+	{
+		campeonatoNovo = new Campeonato();
+		return "CadastroCampeonato";
+	}
+	
+	public String salvarEquipe()
+	{
+		equipeService.salvar(equipeNova);
+		usuarioAtual.equipeNova(equipeNova);
+		equipeNova.setUsuario(usuarioAtual);
+		return "Equipe-Usuario";
+	}
+	
+	public String salvarCampeonato() {
+		usuarioAtual.campeonatoNovo(campeonatoNovo);
+		campeonatoNovo.setUsuario(usuarioAtual);
+		campeonatoService.salvar(campeonatoNovo);
+		campeonatoNovo = new Campeonato();
+		return "Campeonato-Usuario";
+	}
+	
+	public Usuario getUsuarioAtual() {
+		usuarioAtual = usuarioService.getCampeonatosUsuario(usuarioAtual);
+		return usuarioAtual;
 	}
 
-	public void setUsuarioAux(UsuarioAux usuarioAux) {
-		this.usuarioAux = usuarioAux;
+	public void setUsuarioAtual(Usuario usuarioAtual) {
+		this.usuarioAtual = usuarioAtual;
+	}
+
+	public UsuarioService getUsuarioService() {
+		return usuarioService;
+	}
+
+	public void setUsuarioService(UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
+	}
+
+	public CampeonatoService getCampeonatoService() {
+		return campeonatoService;
+	}
+
+	public void setCampeonatoService(CampeonatoService campeonatoService) {
+		this.campeonatoService = campeonatoService;
+	}
+
+	public EquipeService getEquipeService() {
+		return equipeService;
+	}
+
+	public void setEquipeService(EquipeService equipeService) {
+		this.equipeService = equipeService;
 	}
 
 	public Usuario getUsuarioNovo() {
@@ -44,14 +136,6 @@ public class UsuarioMB {
 		this.usuarioNovo = usuarioNovo;
 	}
 
-	public Equipe getEquipeNova() {
-		return equipeNova;
-	}
-
-	public void setEquipeNova(Equipe equipeNova) {
-		this.equipeNova = equipeNova;
-	}
-
 	public Campeonato getCampeonatoNovo() {
 		return campeonatoNovo;
 	}
@@ -60,68 +144,11 @@ public class UsuarioMB {
 		this.campeonatoNovo = campeonatoNovo;
 	}
 
-	public Usuario getUsuarioAtual() {
-		return usuarioAtual;
+	public Equipe getEquipeNova() {
+		return equipeNova;
 	}
 
-	public void setUsuarioAtual(Usuario usuarioAtual) {
-		this.usuarioAtual = usuarioAtual;
-	}
-
-	public String mostrarCPFCampeonatos(String cpf) {
-		usuarioAtual = (Usuario)usuarioAux.getById(Usuario.class,usuarioAtual.getCpf());
-		return "Campeonato-Usuario";
-	}
-	
-	public String mostrarCampeonatos(String cpf) {
-		usuarioAtual = (Usuario) usuarioAux.getById(Usuario.class,usuarioAtual.getCpf());
-		return "Campeonato-Usuario";
-	}
-	
-	public String mostrarCPFEquipes(String cpf) {
-		usuarioAtual = (Usuario)usuarioAux.getById(Usuario.class,usuarioAtual.getCpf());
-		return "Equipe-Usuario";
-	}
-	
-	public String mostrarEquipes(Usuario usuario) {
-		usuarioAtual = (Usuario)usuarioAux.getById(Usuario.class,usuarioAtual.getCpf());
-		return "Equipe-Usuario";
-	}
-	
-	public void salvar() {
-		usuarioAux.save(usuarioNovo);
-		
-		if(usuarios != null) {
-			usuarios.add(usuarioNovo);
-		}
-		
-		usuarioNovo = new Usuario();
-	}
-	
-	public void excluir(Usuario usuario) {
-		usuarioAux.remove(usuario);
-		usuarios.remove(usuario);
-	}
-	
-	public String criarCampeonatos() {
-		campeonatoNovo = new Campeonato();
-		return "CadastroCampeonato";
-	}
-	
-	public String salvarCampeonato() {
-		usuarioAtual.addCampeonatos(campeonatoNovo);
-		campeonatoNovo.setUsuario(usuarioAtual);
-		return "Campeonato-Usuario";
-	}
-	
-	public String criarEquipes() {
-		equipeNova = new Equipe();
-		return "CadastroEquipe";
-	}
-	
-	public String salvarEquipe() {
-		usuarioAtual.addEquipes(equipeNova);
-		equipeNova.setUsuario(usuarioAtual);
-		return "Equipe-Usuario";
+	public void setEquipeNova(Equipe equipeNova) {
+		this.equipeNova = equipeNova;
 	}
 }
