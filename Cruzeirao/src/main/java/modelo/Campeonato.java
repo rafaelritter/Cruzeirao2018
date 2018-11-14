@@ -13,21 +13,25 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.primefaces.event.SelectEvent;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries 
+({
+	@NamedQuery(name="Campeonato.findNome", 
+			query=" Select c From Campeonato c Where c.nome = :nome")
+})
 public class Campeonato {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long campeonatoId;
+	private long idCampeonato;
 	
 	private String nome;
 	private double valorTaxa;
-	private Usuario usuario;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataInicioInscricao;
@@ -44,11 +48,8 @@ public class Campeonato {
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="campeonato")
 	private ArrayList<Categoria> categorias = new ArrayList<Categoria>();
 	
-	@ManyToMany
-	@JoinTable(name="tb_campeonato-usuario", 
-	joinColumns=@JoinColumn(name="usuarioId"),
-	inverseJoinColumns=@JoinColumn(name="campeonatoId"))
-	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+	@ManyToOne
+	private Usuario usuario;
 	
 	public void onDateSelect(SelectEvent event) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -56,12 +57,12 @@ public class Campeonato {
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
     }
 
-	public long getCampeonatoId() {
-		return campeonatoId;
+	public long getIdCampeonato() {
+		return idCampeonato;
 	}
 
-	public void setCampeonatoId(long campeonatoId) {
-		this.campeonatoId = campeonatoId;
+	public void setIdCampeonato(long idCampeonato) {
+		this.idCampeonato = idCampeonato;
 	}
 
 	public String getNome() {
@@ -78,14 +79,6 @@ public class Campeonato {
 
 	public void setValorTaxa(double valorTaxa) {
 		this.valorTaxa = valorTaxa;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 	public Date getDataInicioInscricao() {
@@ -127,12 +120,12 @@ public class Campeonato {
 	public void setCategorias(ArrayList<Categoria> categorias) {
 		this.categorias = categorias;
 	}
-
-	public ArrayList<Usuario> getUsuarios() {
-		return usuarios;
+	
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setUsuarios(ArrayList<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }

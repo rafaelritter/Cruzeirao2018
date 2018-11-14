@@ -15,7 +15,7 @@
 	<br/>
 		<h1>EQUIPES CADASTRADAS</h1>
 		<h:form>
-			<p:dataTable var="equipe" value="#{usuarioMB.usuarioAtual.equipes}">
+			<p:dataTable var="equipe" value="#{usuarioMB.usuarioAtual.equipes}" id="TabelaEquipe">
 			
 				<p:column headerText="Nome">
 				<p:outputLabel value="#{equipe.nome}"/>
@@ -32,14 +32,18 @@
 				<p:outputLabel value="#{equipe.cidade}"/>
 				</p:column>
 				
-				<p:column headerText="Opções" >
+				<p:column headerText="Opção 1" >
+				<p:link action = "#{EquipeMB.remover(equipe)}"  value = "Excluir" />
+				</p:column>
+				
+				<p:column headerText="Opção 2" >
 				<p:link outcome = "FazerInscricao"  value = "Inscrever Equipe" />
 				</p:column>
 			    
 			</p:dataTable>
 		</h:form>
 		<h1>OPÇÕES</h1>
-		<p:link action="#{usuarioMB.criarEquipes()}" value ="CADASTRAR NOVA EQUIPE"/>
+		<p:link action="#{usuarioMB.salvarEquipe()}" value ="CADASTRAR NOVA EQUIPE" update="TabelaEquipe"/>
 		<br/><br/>
 		<p:link outcome="Menu" value ="VOLTAR AO MENU PRINCIPAL"/>
 	</h:body>

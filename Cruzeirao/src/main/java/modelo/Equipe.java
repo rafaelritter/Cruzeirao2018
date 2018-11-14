@@ -13,30 +13,31 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries 
+({
+	@NamedQuery(name="Equipe.findNome", 
+			query=" Select e From Equipe e Where e.nome = :nome")
+})
 public class Equipe {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long equipeId;
+	private long idEquipe;
 	
 	private String nome;
 	private String cidade;
+	
+	@ManyToOne
 	private Usuario usuario;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataFundacao;
-	
-	@ManyToMany
-	@JoinTable(name="tb_usuario-equipe",
-	joinColumns = @JoinColumn(name="equipeId"),
-	inverseJoinColumns = @JoinColumn(name="usuarioId"))
-	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="equipe")
 	private ArrayList<Inscricao> inscricoes = new ArrayList<Inscricao>();
@@ -47,12 +48,12 @@ public class Equipe {
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
     }
 
-	public long getEquipeId() {
-		return equipeId;
+	public long getIdEquipe() {
+		return idEquipe;
 	}
 
-	public void setEquipeId(long equipeId) {
-		this.equipeId = equipeId;
+	public void setIdEquipe(long idEquipe) {
+		this.idEquipe = idEquipe;
 	}
 
 	public String getNome() {
@@ -87,14 +88,6 @@ public class Equipe {
 		this.dataFundacao = dataFundacao;
 	}
 
-	public ArrayList<Usuario> getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(ArrayList<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
-
 	public ArrayList<Inscricao> getInscricoes() {
 		return inscricoes;
 	}
@@ -102,5 +95,4 @@ public class Equipe {
 	public void setInscricoes(ArrayList<Inscricao> inscricoes) {
 		this.inscricoes = inscricoes;
 	}
-	
 }

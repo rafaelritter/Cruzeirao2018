@@ -34,7 +34,7 @@ public class EquipeService {
 	public void remover(Equipe equipe) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		equipe = em.find(Equipe.class, equipe.getEquipeId());
+		equipe = em.find(Equipe.class, equipe.getIdEquipe());
 		em.remove(equipe);
 		em.getTransaction().commit();
 		em.close();

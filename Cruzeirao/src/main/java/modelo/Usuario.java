@@ -2,7 +2,8 @@ package modelo;
 
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.Id;
@@ -12,11 +13,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 @Entity
+@NamedQueries 
+({
+	@NamedQuery(name="Usuario.findId", 
+			query=" Select u From Usuario u Where u.nome = :nome")
+})
 public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long usuarioId;
+	private long idUsuario;
 	
 	private String email;
 	private String nome;
@@ -30,7 +36,7 @@ public class Usuario {
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 	
-	@ManyToMany(mappedBy="usuarios")
+	@OneToMany(mappedBy="usuario")
 	private ArrayList<Equipe> equipes = new ArrayList<Equipe>();
 	
 	@OneToMany(mappedBy="usuario")
@@ -44,12 +50,12 @@ public class Usuario {
 		campeonatos.add(campeonato);
 	}
 
-	public long getUsuarioId() {
-		return usuarioId;
+	public long getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setUsuarioId(long usuarioId) {
-		this.usuarioId = usuarioId;
+	public void setIdUsuario(long idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	public String getEmail() {

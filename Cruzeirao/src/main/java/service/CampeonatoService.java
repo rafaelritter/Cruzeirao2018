@@ -35,7 +35,7 @@ public class CampeonatoService {
 	public void remover(Campeonato campeonato) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		campeonato = em.find(Campeonato.class, campeonato.getCampeonatoId());
+		campeonato = em.find(Campeonato.class, campeonato.getIdCampeonato());
 		em.remove(campeonato);
 		em.getTransaction().commit();
 		em.close();

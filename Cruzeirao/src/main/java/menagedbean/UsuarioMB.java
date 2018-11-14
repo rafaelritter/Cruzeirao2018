@@ -59,12 +59,16 @@ public class UsuarioMB {
 	
 	public String mostrarEquipes(Usuario usuario)
 	{
-		usuarioAtual = usuarioService.getUsuarioById(usuario.getUsuarioId());
+		usuarioAtual = usuarioService.getEquipesUsuario(usuario);
 		return "Equipe-Usuario";
 	}
 	
 	public void getCampeonatos(Usuario usuario) {
 		usuarioAtual = usuarioService.getCampeonatosUsuario(usuario);
+	}
+	
+	public void getEquipes(Usuario usuario) {
+		usuarioAtual = usuarioService.getEquipesUsuario(usuario);
 	}
 	
 	public String criarEquipes()
@@ -81,9 +85,10 @@ public class UsuarioMB {
 	
 	public String salvarEquipe()
 	{
-		equipeService.salvar(equipeNova);
 		usuarioAtual.equipeNova(equipeNova);
 		equipeNova.setUsuario(usuarioAtual);
+		equipeService.salvar(equipeNova);
+		equipeNova = new Equipe();
 		return "Equipe-Usuario";
 	}
 	

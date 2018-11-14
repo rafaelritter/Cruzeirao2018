@@ -11,7 +11,7 @@ import service.EquipeService;
 public class EquipeMB {
 
 	private EquipeService equipeService = new EquipeService();
-	private Equipe equipe = new Equipe();
+	private Equipe equipeAtual = new Equipe();
 	private Equipe equipeNova;
 	private List<Equipe> equipes;
 	
@@ -25,6 +25,18 @@ public class EquipeMB {
 		equipeService.remover(equipe);
 		equipes.remove(equipe);
 	}
+	
+	public List<Equipe> getEquipes() {
+		if(equipes == null)
+		{
+			equipes = equipeService.getEquipes();
+		}
+		return equipes;
+	}
+
+	public void setEquipes(List<Equipe> equipes) {
+		this.equipes = equipes;
+	}
 
 	public EquipeService getEquipeService() {
 		return equipeService;
@@ -34,12 +46,12 @@ public class EquipeMB {
 		this.equipeService = equipeService;
 	}
 
-	public Equipe getEquipe() {
-		return equipe;
+	public Equipe getEquipeAtual() {
+		return equipeAtual;
 	}
 
-	public void setEquipe(Equipe equipe) {
-		this.equipe = equipe;
+	public void setEquipeAtual(Equipe equipeAtual) {
+		this.equipeAtual = equipeAtual;
 	}
 
 	public Equipe getEquipeNova() {
@@ -48,13 +60,5 @@ public class EquipeMB {
 
 	public void setEquipeNova(Equipe equipeNova) {
 		this.equipeNova = equipeNova;
-	}
-
-	public List<Equipe> getEquipes() {
-		return equipeService.getEquipes();
-	}
-
-	public void setEquipes(List<Equipe> equipes) {
-		this.equipes = equipes;
 	}
 }

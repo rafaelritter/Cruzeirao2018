@@ -26,8 +26,7 @@ public class CampeonatoMB {
 		campeonatos.remove(campeonato);
 	}
 	
-	public List <Campeonato> getCampeonatos()
-	{
+	public List <Campeonato> getCampeonatos() {
 		if(campeonatos == null)
 		{
 			campeonatos = campeonatoService.getCampeonatos();

@@ -33,13 +33,20 @@ public class UsuarioService {
 	}
 	
 	public Usuario getCampeonatosUsuario(Usuario u) {
-		u = usuarioDAO.getById(Usuario.class, u.getUsuarioId());
+		u = usuarioDAO.getById(Usuario.class, u.getIdUsuario());
 		u.getCampeonatos().size();
 		System.out.println(u.getCampeonatos());
 		usuarioDAO.closeEntityManager();
 		return u;
 	}
 	
+	public Usuario getEquipesUsuario(Usuario u) {
+		u = usuarioDAO.getById(Usuario.class,  u.getIdUsuario());
+		u.getEquipes().size();
+		System.out.println(u.getEquipes());
+		usuarioDAO.closeEntityManager();
+		return u;
+	}
 
 	public Usuario getUsuarioById(long id)
 	{
@@ -55,7 +62,7 @@ public class UsuarioService {
 	}
 	
 	public void remover(Usuario usuario) {
-		usuario = usuarioDAO.getById(Usuario.class, usuario.getUsuarioId());
+		usuario = usuarioDAO.getById(Usuario.class, usuario.getIdUsuario());
 		usuarioDAO.remove(usuario);
 		usuarioDAO.closeEntityManager();
 	}
