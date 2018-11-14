@@ -21,7 +21,7 @@ import javax.persistence.OneToMany;
 @Entity
 @NamedQueries 
 ({
-	@NamedQuery(name="Equipe.findNome", 
+	@NamedQuery(name="Equipe.findId", 
 			query=" Select e From Equipe e Where e.nome = :nome")
 })
 public class Equipe {
