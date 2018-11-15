@@ -7,15 +7,12 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>listarequipe</title>
+	<title>listartodasequipes</title>
 </h:head>
 	<h:body>
-	<br/>
-	<p:outputLabel value="USUÁRIO QUE ESTÁ GERENCIANDO: #{usuarioMB.usuarioAtual.nome}"/>
-	<br/>
-		<h1>EQUIPES CADASTRADAS</h1>
-		<h:form id="formEquipe">
-			<p:dataTable value="#{usuarioMB.usuarioAtual.equipes}" var="equipe" id="TabelaEquipe">
+		<h1>TOTAL DE EQUIPES CADASTRADAS</h1>
+		<h:form id="formCamp">
+			<p:dataTable value="#{equipeMB.equipes}" var="equipe" id="TabelaEquipe" update="formCamp">
 			
 				<p:column headerText="Nome">
 				<p:outputLabel value="#{equipe.nome}"/>
@@ -32,23 +29,9 @@
 				<p:outputLabel value="#{equipe.cidade}"/>
 				</p:column>
 				
-				<p:column headerText="Opção 1" >
-				<p:commandLink outcome = "FazerInscricao"  value = "Inscrever Equipe" />
-				</p:column>
-				
-				<p:column headerText="Opção 2">
-				<p:commandLink action="#{equipeMB.alterar(equipe)}" value="Editar"></p:commandLink>
-				</p:column>
-				
-				<p:column headerText="Opção 3" >
-				<p:commandLink action="#{equipeMB.remover(equipe)}" value="Excluir" update="formEquipe"></p:commandLink>
-				</p:column>
-				
 			</p:dataTable>
 		</h:form>
-		<h1>OPÇÕES</h1>
-		<p:link outcome="CadastroEquipe" value ="CADASTRAR NOVA EQUIPE"/>
-		<br/><br/>
+		<br/>
 		<p:link outcome="Menu" value ="VOLTAR AO MENU PRINCIPAL"/>
 	</h:body>
 </html>

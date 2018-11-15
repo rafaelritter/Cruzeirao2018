@@ -9,48 +9,12 @@
 	<title>listarcategoria</title>
 </h:head>
 	<h:body>
-	<h1>CAMPEONATOS CADASTRADOS</h1>
-		<h:form>
-			
-			<p:dataTable var="campeonato" value="#{usuarioMB.usuarioAtual.campeonatos}">
-			
-				<p:column headerText="Nome">
-				<p:outputLabel value="#{campeonato.nome}"/>
-				</p:column>
-				       
-				<p:column headerText="Data do Início das Inscrições">
-				<h:outputText/>
-				<h:outputText value="#{campeonato.dataInicioInscricao}">
-				</h:outputText>
-				</p:column>
-				       
-				<p:column headerText="Data do Término das Inscrições">
-				<h:outputText/>
-				<h:outputText value="#{campeonato.dataFimInscricao}">
-				</h:outputText>
-				</p:column>
-				       
-				<p:column headerText="Data do Inicio do Campeonato">
-				<h:outputText/>
-				<h:outputText value="#{campeonato.dataInicioCampeonato}">
-				</h:outputText>
-				</p:column>
-				       
-				<p:column headerText="Data do Término do Campeonato">
-				<h:outputText/>
-				<h:outputText value="#{campeonato.dataFimCampeonato}">
-				</h:outputText>
-				</p:column>
-				       
-				<p:column headerText="Valor da Taxa">
-				<p:outputLabel value="#{campeonato.valorTaxa}"/>
-				</p:column>
-			</p:dataTable>
-		</h:form>
-		<br/>
-	<h1>CATEGORIAS DOS CAMPEONATOS</h1>
-		<h:form>
-			<p:dataTable var="cat" value="#{categoriaMB.lista}">
+	<br/>
+	<p:outputLabel value="CAMPEONATO ATUAL: #{campeonatoMB.campeonatoAtual.nome}"/>
+	<br/>
+	<h1>CATEGORIAS CADASTRADAS</h1>
+		<h:form id="formCategoria">
+			<p:dataTable var="cat" value="#{campeonatoMB.campeonatoAtual.categorias}" id="TabelaCategoria" >
 				
 				<p:column headerText="Nome">
 				<p:outputLabel value="#{cat.nome}"/>
@@ -72,8 +36,16 @@
 				<p:outputLabel value="#{cat.sexo}"/>
 				</p:column>
 				    
-				<p:column headerText="Opções" >
+				<p:column headerText="Opção 1" >
 				<p:link outcome="DeterminarFase" value="Determinar Fase"/>
+				</p:column>
+				
+				<p:column headerText="Opção 2">
+				<p:commandLink action="#{categoriaMB.alterar(categoria)}" value="Editar"></p:commandLink>
+				</p:column>
+				
+				<p:column headerText="Opção 3">
+				<p:commandLink action="#{categoriaMB.remover(categoria)}" value="Excluir" update="formCategoria"></p:commandLink>
 				</p:column>
 			       
 			</p:dataTable>

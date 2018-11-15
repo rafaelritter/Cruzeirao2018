@@ -11,7 +11,7 @@
 </h:head>
 	<h:body>
 		<h1>USUÁRIOS CADASTRADOS</h1>
-		<h:form>
+		<h:form id="formUsuario">
 			<p:dataTable value="#{usuarioMB.usuarios}" var="usuario" id="TabelaUsuario">
 		   
 				<p:column headerText="e-Mail">
@@ -61,8 +61,12 @@
 				<p:commandLink action="#{usuarioMB.mostrarEquipes(usuario)}" value="Gerenciar Equipes" />
 				</p:column>
 				
-				<p:column headerText="Opção 3" >
-				<p:commandLink action="#{usuarioMB.remover(usuario)}" value="Excluir" update="TabelaUsuario" />
+				<p:column headerText="Opção 3">
+				<p:commandLink action="#{usuarioMB.alterar(usuario)}" value="Editar"></p:commandLink>
+				</p:column>
+				
+				<p:column headerText="Opção 4" >
+				<p:commandLink action="#{usuarioMB.remover(usuario)}" value="Excluir" update="formUsuario" />
 				</p:column>
 				
 			</p:dataTable>

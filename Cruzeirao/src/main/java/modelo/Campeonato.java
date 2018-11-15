@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.persistence.CascadeType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.primefaces.event.SelectEvent;
@@ -19,10 +18,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
-@NamedQueries 
-({
-	@NamedQuery(name="Campeonato.findId", 
-			query=" Select c From Campeonato c Where c.nome = :nome")
+@NamedQueries ( {
+	@NamedQuery(name="Campeonato.findId", query=" Select c From Campeonato c Where c.nome = :nome")
 })
 public class Campeonato {
 	
@@ -45,7 +42,7 @@ public class Campeonato {
 	@Temporal(TemporalType.DATE)
 	private Date dataFimCampeonato;
 	
-	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="campeonato")
+	@OneToMany(mappedBy="campeonato")
 	private ArrayList<Categoria> categorias = new ArrayList<Categoria>();
 	
 	@ManyToOne
@@ -56,6 +53,10 @@ public class Campeonato {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
     }
+	
+	public void categoriaNova(Categoria categoria) {
+		categorias.add(categoria);
+	}
 
 	public long getIdCampeonato() {
 		return idCampeonato;

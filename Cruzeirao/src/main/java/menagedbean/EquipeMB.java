@@ -2,6 +2,9 @@ package menagedbean;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import org.primefaces.event.RowEditEvent;
+
 import java.util.List;
 import modelo.Equipe;
 import service.EquipeService;
@@ -19,6 +22,11 @@ public class EquipeMB {
 		equipeService.salvar(equipeNova);
 		equipeNova = new Equipe();
 		return "Menu";
+	}
+	
+	public void alterar(RowEditEvent event) {
+		Equipe e = ((Equipe) event.getObject());
+		equipeService.alterar(e);
 	}
 	
 	public void remover(Equipe equipe) {

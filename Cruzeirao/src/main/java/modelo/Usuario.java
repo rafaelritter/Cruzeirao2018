@@ -13,10 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 @Entity
-@NamedQueries 
-({
-	@NamedQuery(name="Usuario.findId", 
-			query=" Select u From Usuario u Where u.nome = :nome")
+@NamedQueries ( {
+	@NamedQuery(name="Usuario.findId", query=" Select u From Usuario u Where u.nome = :nome")
 })
 public class Usuario {
 

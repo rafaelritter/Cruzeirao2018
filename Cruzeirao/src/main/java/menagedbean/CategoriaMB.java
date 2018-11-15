@@ -1,49 +1,64 @@
 package menagedbean;
 
-import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import modelo.Categoria;
-import modelo.Fase;
-import modelo.Inscricao;
+import service.CategoriaService;
 
 @ManagedBean
 @SessionScoped
 public class CategoriaMB {
 	
-	private ArrayList<Categoria> lista = new ArrayList<Categoria>();
-	private ArrayList<Inscricao> listaInscricao = new ArrayList<Inscricao>();
-	private ArrayList<Fase> listaFase = new ArrayList<Fase>();
-	private Categoria categoria = new Categoria();
+	private CategoriaService categoriaService = new CategoriaService();
+	private Categoria categoriaNova = new Categoria();
+	private Categoria categoriaAtual;
+	private List<Categoria> categorias;
 	
-	public String Salvar() {
-		lista.add(categoria);
-		categoria = new Categoria();
+	public String salvar() {
+		categoriaService.salvar(categoriaNova);
+		categoriaNova = new Categoria();
 		return "Menu";
 	}
 	
-	public ArrayList<Categoria> getLista() {
-		return lista;
+	public void remover(Categoria categoria) {
+		categoriaService.remover(categoria);
+		categorias.remove(categoria);
 	}
-	public void setLista(ArrayList<Categoria> lista) {
-		this.lista = lista;
+	
+	public List<Categoria> getCategorias() {
+		if(categorias == null) 
+		{
+			categorias = categoriaService.getCategorias();
+		}
+		return categorias;
 	}
-	public Categoria getCategoria() {
-		return categoria;
+	
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
 	}
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+
+	public CategoriaService getCategoriaService() {
+		return categoriaService;
 	}
-	public ArrayList<Inscricao> getListaInscricao() {
-		return listaInscricao;
+
+	public void setCategoriaService(CategoriaService categoriaService) {
+		this.categoriaService = categoriaService;
 	}
-	public void setListaInscricao(ArrayList<Inscricao> listaInscricao) {
-		this.listaInscricao = listaInscricao;
+
+	public Categoria getCategoriaNova() {
+		return categoriaNova;
 	}
-	public ArrayList<Fase> getListaFase() {
-		return listaFase;
+
+	public void setCategoriaNova(Categoria categoriaNova) {
+		this.categoriaNova = categoriaNova;
 	}
-	public void setListaFase(ArrayList<Fase> listaFase) {
-		this.listaFase = listaFase;
+
+	public Categoria getCategoriaAtual() {
+		return categoriaAtual;
+	}
+
+	public void setCategoriaAtual(Categoria categoriaAtual) {
+		this.categoriaAtual = categoriaAtual;
 	}
 }

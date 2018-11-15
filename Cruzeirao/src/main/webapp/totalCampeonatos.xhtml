@@ -7,16 +7,13 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>listarcampeonato</title>
+	<title>listartotalcampeonatos</title>
 </h:head>
 	<h:body>
-	<br/>
-	<p:outputLabel value="USUÁRIO QUE ESTÁ GERENCIANDO: #{usuarioMB.usuarioAtual.nome}"/>
-	<br/>
-	<h1>CAMPEONATOS CADASTRADOS</h1>
+	<h1>TOTAL DE CAMPEONATOS CADASTRADOS</h1>
 		<h:form id="formCampeonato">
 			
-			<p:dataTable var="campeonato" value="#{usuarioMB.usuarioAtual.campeonatos}" id="TabelaCampeonato" >
+			<p:dataTable value="#{campeonatoMB.campeonatos}" var="campeonato" id="TabelaCampeonato" update="TabelaCampeonato">
 			
 				<p:column headerText="Nome">
 				<p:outputLabel value="#{campeonato.nome}"/>
@@ -54,21 +51,7 @@
 				<p:outputLabel value="#{campeonato.valorTaxa}"/>
 				</p:column>
 				
-				<p:column headerText="Opção 1">
-				<p:link outcome = "Categoria-Campeonato" value = "Gerenciar Categorias"/>
-				</p:column>
-				
-				<p:column headerText="Opção 2">
-				<p:commandLink action="#{campeonatoMB.alterar(campeonato)}" value="Editar"></p:commandLink>
-				</p:column>
-				
-				<p:column headerText="Opção 3">
-				<p:commandLink action="#{campeonatoMB.remover(campeonato)}" value="Excluir" update="formCampeonato"></p:commandLink>
-				</p:column>
-				
 			</p:dataTable>
-			<h1>OPÇÕES</h1>
-			<p:link outcome="CadastroCampeonato" value ="CADASTRAR NOVO CAMPEONATO"/>
 		</h:form>
 		<br/>
 		<p:link outcome="Menu" value ="VOLTAR AO MENU PRINCIPAL"/>
