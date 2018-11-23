@@ -3,11 +3,17 @@ package service;
 import java.util.List;
 
 import dao.CategoriaDAO;
+import dao.FaseDAO;
+import dao.InscricaoDAO;
 import modelo.Categoria;
+import modelo.Fase;
+import modelo.Inscricao;
 
 public class CategoriaService {
 	
 	CategoriaDAO categoriaDAO = new CategoriaDAO();
+	InscricaoDAO inscricaoDAO = new InscricaoDAO();
+	FaseDAO faseDAO = new FaseDAO();
 	
 	public Categoria salvar(Categoria categoria) {
 		categoria = categoriaDAO.save(categoria);
@@ -36,5 +42,33 @@ public class CategoriaService {
 		Categoria ca;
 		ca = categoriaDAO.getById(Categoria.class, Id);
 		return ca;
+	}
+	
+	public List<Inscricao> getInscricoes() {
+		List<Inscricao> list = inscricaoDAO.getAll(Inscricao.class);
+		inscricaoDAO.closeEntityManager();
+		return list;
+	}
+	
+	public List<Fase> getFases() {
+		List<Fase> list = faseDAO.getAll(Fase.class);
+		faseDAO.closeEntityManager();
+		return list;
+	}
+	
+	public Categoria getInscricaoCategoria(Categoria c) {
+		c = categoriaDAO.getById(Categoria.class, c.getIdCategoria());
+		c.getInscricoes().size();
+		System.out.println(c.getInscricoes());
+		categoriaDAO.closeEntityManager();
+		return c;
+	}
+	
+	public Categoria getFaseCategoria(Categoria c) {
+		c = categoriaDAO.getById(Categoria.class, c.getIdCategoria());
+		c.getFases().size();
+		System.out.println(c.getFases());
+		categoriaDAO.closeEntityManager();
+		return c;
 	}
 }

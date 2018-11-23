@@ -14,17 +14,17 @@
 			<h:panelGrid columns="2" cellpadding="5">
 			     
 				<p:outputLabel value="Número"/>
-				<p:inputText value="#{inscricaoMB.inscricao.numero}"/>
+				<p:inputText value="#{equipeMB.inscricaoNova.numero}"/>
 				
 				<p:outputLabel value="Pagamento"/>
-				<p:inputText value="#{inscricaoMB.inscricao.pagamento}"/>
+				<p:inputText value="#{equipeMB.inscricaoNova.pagamento}"/>
 				
 				<p:outputLabel value="Validada"/>
-				<p:inputText value="#{inscricaoMB.inscricao.validada}"/>
+				<p:inputText value="#{equipeMB.inscricaoNova.validada}"/>
 			           
 			</h:panelGrid>
 			<br/>
-			<p:commandButton action="#{inscricaoMB.Salvar}" value="Salvar" update=":formInscricao"/>
+			<p:commandButton action="#{equipeMB.salvarInscricao}" value="Salvar" update=":formInscricao"/>
 		</h:form>
 		<br/><br/>
 		<p:link outcome="Menu" value="VOLTAR AO MENU PRINCIPAL" />

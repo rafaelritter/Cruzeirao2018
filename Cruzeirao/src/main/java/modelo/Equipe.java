@@ -6,7 +6,6 @@ import javax.faces.context.FacesContext;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import org.primefaces.event.SelectEvent;
 import java.text.SimpleDateFormat;
@@ -19,10 +18,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
-@NamedQueries 
-({
-	@NamedQuery(name="Equipe.findId", 
-			query=" Select e From Equipe e Where e.nome = :nome")
+@NamedQueries ( {
+	@NamedQuery(name="Equipe.findId", query=" Select e From Equipe e Where e.nome = :nome")
 })
 public class Equipe {
 	
@@ -39,7 +36,7 @@ public class Equipe {
 	@Temporal(TemporalType.DATE)
 	private Date dataFundacao;
 	
-	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="equipe")
+	@OneToMany(mappedBy="equipe")
 	private ArrayList<Inscricao> inscricoes = new ArrayList<Inscricao>();
 	
 	public void onDateSelect(SelectEvent event) {
@@ -47,6 +44,10 @@ public class Equipe {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
     }
+	
+	public void inscricaoNova(Inscricao inscricao) {
+		inscricoes.add(inscricao);
+	}
 
 	public long getIdEquipe() {
 		return idEquipe;

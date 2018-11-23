@@ -11,7 +11,7 @@
 	<h:body>
 	<h1>CATEGORIAS DOS CAMPEONATOS</h1>
 		<h:form>
-			<p:dataTable var="cat" value="#{categoriaMB.lista}">
+			<p:dataTable var="cat" value="#{categoriaMB.categoriaAtual.fases}" id="TabelaFase">
 				
 				<p:column headerText="Nome">
 				<p:outputLabel value="#{cat.nome}"/>
@@ -33,36 +33,10 @@
 				<p:outputLabel value="#{cat.sexo}"/>
 				</p:column>
 			       
-			</p:dataTable>
+			</p:dataTable><h1>OPÇÕES</h1>
+			<p:link outcome="CadastroFase" value ="CADASTRAR NOVA FASE"/>
 		</h:form>
 		<br/>
-	<h1>FASES DETERMINADAS</h1>
-		<h:form>
-			<p:dataTable var="fase" value="#{faseMB.lista}">
-				
-				<p:column headerText="Início da Fase" >
-				<h:outputText value="" />
-				<h:outputText value="#{fase.dataInicio}">
-				</h:outputText>
-				</p:column>
-				         
-				<p:column headerText="Término da Fase" >
-				<h:outputText value="" />
-				<h:outputText value="#{fase.dataFim}">
-				</h:outputText>
-				</p:column>
-				         
-				<p:column headerText="Número" >
-				<p:outputLabel value="#{fase.numero}"/>
-				</p:column>
-				    		
-				<p:column headerText="Opções" >
-				<p:link outcome = "DeterminarGrupo"  value = "Definir Grupo" />
-				</p:column>
-			
-			</p:dataTable>
-		</h:form>
-		<br/><br/>
 		<p:link outcome="Menu" value="VOLTAR AO MENU PRINCIPAL" />
 	</h:body>
 </html>

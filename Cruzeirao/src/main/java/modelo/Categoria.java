@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries ( {
@@ -25,13 +26,23 @@ public class Categoria {
 	private int maxJogadores;
 	private String sexo;
 	
+	@OneToMany(mappedBy="categoria")
 	private ArrayList<Inscricao> inscricoes = new ArrayList<>();
+	
+	@OneToMany(mappedBy="categoria")
+	private ArrayList<Fase> fases = new ArrayList<Fase>();
 	
 	@ManyToOne
 	private Campeonato campeonato;
 	
-	private ArrayList<Fase> fases = new ArrayList<Fase>();
-
+	public void inscricaoNova(Inscricao inscricao) {
+		inscricoes.add(inscricao);
+	}
+	
+	public void faseNova(Fase fase) {
+		fases.add(fase);
+	}
+	
 	public long getIdCategoria() {
 		return idCategoria;
 	}

@@ -2,31 +2,29 @@ package menagedbean;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
-import org.primefaces.event.RowEditEvent;
-
 import java.util.List;
 import modelo.Equipe;
+import modelo.Inscricao;
 import service.EquipeService;
+import service.InscricaoService;
 
 @ManagedBean
 @SessionScoped
 public class EquipeMB {
 
 	private EquipeService equipeService = new EquipeService();
-	private Equipe equipeAtual = new Equipe();
-	private Equipe equipeNova;
+	private InscricaoService inscricaoService = new InscricaoService();
+	
+	private Equipe equipeNova = new Equipe();
+	private Inscricao inscricaoNova = new Inscricao();
+	
+	private Equipe equipeAtual;
 	private List<Equipe> equipes;
 	
 	public String salvar() {
 		equipeService.salvar(equipeNova);
 		equipeNova = new Equipe();
 		return "Menu";
-	}
-	
-	public void alterar(RowEditEvent event) {
-		Equipe e = ((Equipe) event.getObject());
-		equipeService.alterar(e);
 	}
 	
 	public void remover(Equipe equipe) {
@@ -44,6 +42,28 @@ public class EquipeMB {
 
 	public void setEquipes(List<Equipe> equipes) {
 		this.equipes = equipes;
+	}
+	
+	public String mostrarInscricoes(Equipe equipe) {
+		equipeAtual = equipeService.getInscricaoEquipe(equipe);
+		return "Inscricao-Equipe";
+	}
+	
+	public String criarInscricao() {
+		inscricaoNova = new Inscricao();
+		return "CadastroInscricao";
+	}
+	
+	public String salvarInscricao() {
+		equipeAtual.inscricaoNova(inscricaoNova);
+		inscricaoNova.setEquipe(equipeAtual);
+		inscricaoService.salvar(inscricaoNova);
+		inscricaoNova = new Inscricao();
+		return "Inscricao-Equipe";
+	}
+	
+	public void getInscricoes(Equipe equipe) {
+		equipeAtual = equipeService.getInscricaoEquipe(equipe);
 	}
 
 	public EquipeService getEquipeService() {

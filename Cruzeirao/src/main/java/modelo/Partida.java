@@ -6,6 +6,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -16,6 +17,9 @@ public class Partida {
 	
 	@Id
 	private int numero;
+	
+	@ManyToOne
+	private Inscricao inscricao;
 	
 	private Inscricao equipeMandante;
 	

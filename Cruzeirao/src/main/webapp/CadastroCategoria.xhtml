@@ -3,30 +3,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
 >
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>cadastrocategoria</title>
+<title>Cadastro de Categoria</title>
 </h:head>
 	<h:body>
 	<h1>CADASTRO DE CATEGORIA</h1>
 		<h:form id="formCategoria">
 			<h:panelGrid columns="2">
-			     
+			    
 				<p:outputLabel value="Nome"/>
-				<p:inputText value="#{categoriaMB.categoriaNova.nome}"/>
+				<p:inputText value="#{campeonatoMB.categoriaNova.nome}"/>
 				 
 				<p:outputLabel value="Nascidos a partir de"/>
-				<p:inputText value="#{categoriaMB.categoriaNova.nascidosAPartirDe}"/>
+				<p:inputText value="#{campeonatoMB.categoriaNova.nascidosAPartirDe}"/>
 				
 				<p:outputLabel value="Mínimo de Jogadores"/>
-				<p:inputText value="#{categoriaMB.categoriaNova.minJogadores}"/>
+				<p:inputText value="#{campeonatoMB.categoriaNova.minJogadores}"/>
 				 
 				<p:outputLabel value="Máximo de Jogadores"/>
-				<p:inputText value="#{categoriaMB.categoriaNova.maxJogadores}"/>
+				<p:inputText value="#{campeonatoMB.categoriaNova.maxJogadores}"/>
 				
 				<p:outputLabel value="Sexo"/>
-				<p:inputText value="#{categoriaMB.categoriaNova.sexo}"/>
+				<p:inputText value="#{campeonatoMB.categoriaNova.sexo}"/>
 			           
 			</h:panelGrid>
 		    <br/>
