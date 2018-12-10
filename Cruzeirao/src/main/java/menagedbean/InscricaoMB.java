@@ -4,17 +4,19 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import modelo.Inscricao;
+import modelo.Partida;
 import service.InscricaoService;
+import service.PartidaService;
 
 @ManagedBean
 @SessionScoped
 public class InscricaoMB {
 	
 	private InscricaoService inscricaoService = new InscricaoService();
-	//private PartidaService partidaService = new PartidaService();
+	private PartidaService partidaService = new PartidaService();
 	
 	private Inscricao inscricaoNova = new Inscricao();
-	//private Partida partidaNova = new Partida();
+	private Partida partidaNova = new Partida();
 	
 	private Inscricao inscricaoAtual;
 	private List<Inscricao> inscricoes;
@@ -42,7 +44,6 @@ public class InscricaoMB {
 		this.inscricoes = inscricoes;
 	}
 	
-	/*
 	public String mostrarPartidas(Inscricao inscricao) {
 		inscricaoAtual = inscricaoService.getPartidaInscricao(inscricao);
 		return "Partida-Inscricao";
@@ -64,7 +65,6 @@ public class InscricaoMB {
 		partidaNova = new Partida();
 		return "Partida-Inscricao";
 	}
-	*/
 
 	public InscricaoService getInscricaoService() {
 		return inscricaoService;
@@ -88,5 +88,21 @@ public class InscricaoMB {
 
 	public void setInscricaoAtual(Inscricao inscricaoAtual) {
 		this.inscricaoAtual = inscricaoAtual;
+	}
+
+	public PartidaService getPartidaService() {
+		return partidaService;
+	}
+
+	public void setPartidaService(PartidaService partidaService) {
+		this.partidaService = partidaService;
+	}
+
+	public Partida getPartidaNova() {
+		return partidaNova;
+	}
+
+	public void setPartidaNova(Partida partidaNova) {
+		this.partidaNova = partidaNova;
 	}
 }

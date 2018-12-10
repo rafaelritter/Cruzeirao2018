@@ -49,7 +49,6 @@ public class CampeonatoService {
 	public Campeonato getCategoriaCampeonato(Campeonato c) {
 		c = campeonatoDAO.getById(Campeonato.class, c.getIdCampeonato());
 		c.getCategorias().size();
-		System.out.println(c.getCategorias());
 		campeonatoDAO.closeEntityManager();
 		return c;
 	}

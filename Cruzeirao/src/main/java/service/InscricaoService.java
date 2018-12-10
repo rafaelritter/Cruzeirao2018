@@ -49,7 +49,6 @@ public class InscricaoService {
 	public Inscricao getPartidaInscricao(Inscricao i) {
 		i = inscricaoDAO.getById(Inscricao.class, i.getIdInscricao());
 		i.getPartidas().size();
-		System.out.println(i.getPartidas());
 		inscricaoDAO.closeEntityManager();
 		return i;
 	}

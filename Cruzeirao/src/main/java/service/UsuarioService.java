@@ -58,7 +58,6 @@ public class UsuarioService {
 	public Usuario getCampeonatosUsuario(Usuario u) {
 		u = usuarioDAO.getById(Usuario.class, u.getIdUsuario());
 		u.getCampeonatos().size();
-		System.out.println(u.getCampeonatos());
 		usuarioDAO.closeEntityManager();
 		return u;
 	}
@@ -66,7 +65,6 @@ public class UsuarioService {
 	public Usuario getEquipesUsuario(Usuario u) {
 		u = usuarioDAO.getById(Usuario.class,  u.getIdUsuario());
 		u.getEquipes().size();
-		System.out.println(u.getEquipes());
 		usuarioDAO.closeEntityManager();
 		return u;
 	}

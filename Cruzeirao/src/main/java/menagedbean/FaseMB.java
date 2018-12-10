@@ -1,32 +1,64 @@
 package menagedbean;
 
-import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import modelo.Fase;
+import service.FaseService;
 
 @ManagedBean
 @SessionScoped
 public class FaseMB {
 	
-	private ArrayList<Fase> lista = new ArrayList<Fase>();
-	private Fase fase = new Fase();
+	private FaseService faseService = new FaseService();
+	private Fase faseNova = new Fase();
+	private Fase faseAtual;
+	private List<Fase> fases;
 	
-	public String Salvar() {
-		lista.add(fase);
-		fase = new Fase();
+	public String salvar() {
+		faseService.salvar(faseNova);
+		faseNova = new Fase();
 		return "Menu";
 	}
-	public ArrayList<Fase> getLista() {
-		return lista;
+	
+	public void remover(Fase fase) {
+		faseService.remover(fase);
+		fases.remove(fase);
 	}
-	public void setLista(ArrayList<Fase> lista) {
-		this.lista = lista;
+	
+	public List<Fase> getFases() {
+		if (fases == null) {
+			fases = faseService.getFases();
+		}
+		
+		return fases;
 	}
-	public Fase getFase() {
-		return fase;
+
+	public void setFases(List<Fase> fases) {
+		this.fases = fases;
 	}
-	public void setFase(Fase fase) {
-		this.fase = fase;
+
+	public FaseService getFaseService() {
+		return faseService;
+	}
+
+	public void setFaseService(FaseService faseService) {
+		this.faseService = faseService;
+	}
+
+	public Fase getFaseNova() {
+		return faseNova;
+	}
+
+	public void setFaseNova(Fase faseNova) {
+		this.faseNova = faseNova;
+	}
+
+	public Fase getFaseAtual() {
+		return faseAtual;
+	}
+
+	public void setFaseAtual(Fase faseAtual) {
+		this.faseAtual = faseAtual;
 	}
 }

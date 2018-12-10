@@ -51,7 +51,7 @@ public class EquipeMB {
 	
 	public String criarInscricao() {
 		inscricaoNova = new Inscricao();
-		return "CadastroInscricao";
+		return "FazerInscricao";
 	}
 	
 	public String salvarInscricao() {
@@ -88,5 +88,21 @@ public class EquipeMB {
 
 	public void setEquipeNova(Equipe equipeNova) {
 		this.equipeNova = equipeNova;
+	}
+
+	public InscricaoService getInscricaoService() {
+		return inscricaoService;
+	}
+
+	public void setInscricaoService(InscricaoService inscricaoService) {
+		this.inscricaoService = inscricaoService;
+	}
+
+	public Inscricao getInscricaoNova() {
+		return inscricaoNova;
+	}
+
+	public void setInscricaoNova(Inscricao inscricaoNova) {
+		this.inscricaoNova = inscricaoNova;
 	}
 }

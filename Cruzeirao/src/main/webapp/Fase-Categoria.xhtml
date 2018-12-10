@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Categorias do Campeonato</title>
+<title>Fases da Categoria</title>
 </h:head>
 	<h:body>
 	<br/>
@@ -14,11 +14,13 @@
 	<br/>
 	<p:outputLabel value="CAMPEONATO ATUAL: #{campeonatoMB.campeonatoAtual.nome}"/>
 	<br/>
+	<p:outputLabel value="CATEGORIA ATUAL: #{categoriaMB.categoriaAtual.nome}"/>
+	<br/>
 		<h:form>
 			<h1>OPÇÕES</h1>
-			<h:commandLink value="CADASTRAR NOVA CATEGORIA" action="#{campeonatoMB.criarCategoria()}"/>
+			<h:commandLink value="CADASTRAR NOVA FASE" action="#{categoriaMB.criarFase()}"/>
 			<br/><br/>
-			<p:link outcome="ListarCategorias" value ="VER CATEGORIAS CADASTRADAS"/>
+			<p:link outcome="ListarFases" value ="VER FASES CADASTRADAS"/>
 		</h:form>
 		<br/>
 		<p:link outcome="Menu" value ="VOLTAR AO MENU PRINCIPAL"/>

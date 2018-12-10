@@ -14,7 +14,7 @@
 	<br/>
 		<h:form>
 			<h1>OPÇÕES</h1>
-			<p:link outcome="CadastroCampeonato" value ="CADASTRAR NOVO CAMPEONATO"/>
+			<h:commandLink value="CADASTRAR NOVO CAMPEONATO" action="#{usuarioMB.criarCampeonatos()}" />
 			<br/><br/>
 			<p:link outcome="ListarCampeonatos" value ="VER CAMPEONATOS CADASTRADOS"/>
 		</h:form>

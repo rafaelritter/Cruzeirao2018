@@ -71,6 +71,11 @@ public class UsuarioMB {
 		usuarioAtual = usuarioService.getEquipesUsuario(usuario);
 	}
 	
+	public String criarUsuario() {
+		usuarioNovo = new Usuario();
+		return "CadastroUsuario";
+	}
+	
 	public String criarEquipes()
 	{
 		equipeNova = new Equipe();

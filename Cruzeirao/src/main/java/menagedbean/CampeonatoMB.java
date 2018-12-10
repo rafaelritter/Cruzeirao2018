@@ -33,8 +33,7 @@ public class CampeonatoMB {
 	}
 	
 	public List<Campeonato> getCampeonatos() {
-		if(campeonatos == null)
-		{
+		if(campeonatos == null){
 			campeonatos = campeonatoService.getCampeonatos();
 		}
 		
@@ -89,5 +88,21 @@ public class CampeonatoMB {
 
 	public void setCampeonatoAtual(Campeonato campeonatoAtual) {
 		this.campeonatoAtual = campeonatoAtual;
+	}
+
+	public CategoriaService getCategoriaService() {
+		return categoriaService;
+	}
+
+	public void setCategoriaService(CategoriaService categoriaService) {
+		this.categoriaService = categoriaService;
+	}
+
+	public Categoria getCategoriaNova() {
+		return categoriaNova;
+	}
+
+	public void setCategoriaNova(Categoria categoriaNova) {
+		this.categoriaNova = categoriaNova;
 	}
 }

@@ -4,8 +4,10 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import modelo.Categoria;
+import modelo.Fase;
 import modelo.Inscricao;
 import service.CategoriaService;
+import service.FaseService;
 import service.InscricaoService;
 
 @ManagedBean
@@ -14,11 +16,11 @@ public class CategoriaMB {
 	
 	private CategoriaService categoriaService = new CategoriaService();
 	private InscricaoService inscricaoService = new InscricaoService();
-	//private FaseService faseService = new FaseService();
+	private FaseService faseService = new FaseService();
 	
 	private Categoria categoriaNova = new Categoria();
 	private Inscricao inscricaoNova = new Inscricao();
-	//private Fase faseNova = new Fase();
+	private Fase faseNova = new Fase();
 	
 	private Categoria categoriaAtual;
 	private List<Categoria> categorias;
@@ -51,34 +53,28 @@ public class CategoriaMB {
 		return "Inscricao-Categoria";
 	}
 	
-	/*
 	public String mostrarFases(Categoria categoria) {
 		categoriaAtual = categoriaService.getFaseCategoria(categoria);
 		return "Fase-Categoria";
 	}
-	*/
 	
 	public void getInscricoes(Categoria categoria) {
 		categoriaAtual = categoriaService.getInscricaoCategoria(categoria);
 	}
 	
-	/*
 	public void getFases(Categoria categoria) {
 		categoriaAtual = categoriaService.getFaseCategoria(categoria);
 	}
-	*/
 	
 	public String criarInscricao() {
 		inscricaoNova = new Inscricao();
 		return "CadastroInscricao";
 	}
 	
-	/*
 	public String criarFase() {
 		faseNova = new Fase();
 		return "CadastroFase";
 	}
-	*/
 	
 	public String salvarInscricao() {
 		categoriaAtual.inscricaoNova(inscricaoNova);
@@ -88,7 +84,6 @@ public class CategoriaMB {
 		return "Inscricao-Categoria";
 	}
 	
-	/*
 	public String salvarFase() {
 		categoriaAtual.faseNova(faseNova);
 		faseNova.setCategoria(categoriaAtual);
@@ -96,7 +91,6 @@ public class CategoriaMB {
 		faseNova = new Fase();
 		return "Fase-Categoria";
 	}
-	*/
 
 	public CategoriaService getCategoriaService() {
 		return categoriaService;
@@ -120,5 +114,37 @@ public class CategoriaMB {
 
 	public void setCategoriaAtual(Categoria categoriaAtual) {
 		this.categoriaAtual = categoriaAtual;
+	}
+
+	public InscricaoService getInscricaoService() {
+		return inscricaoService;
+	}
+
+	public void setInscricaoService(InscricaoService inscricaoService) {
+		this.inscricaoService = inscricaoService;
+	}
+
+	public Inscricao getInscricaoNova() {
+		return inscricaoNova;
+	}
+
+	public void setInscricaoNova(Inscricao inscricaoNova) {
+		this.inscricaoNova = inscricaoNova;
+	}
+
+	public FaseService getFaseService() {
+		return faseService;
+	}
+
+	public void setFaseService(FaseService faseService) {
+		this.faseService = faseService;
+	}
+
+	public Fase getFaseNova() {
+		return faseNova;
+	}
+
+	public void setFaseNova(Fase faseNova) {
+		this.faseNova = faseNova;
 	}
 }

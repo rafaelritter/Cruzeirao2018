@@ -1,32 +1,64 @@
 package menagedbean;
 
-import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import modelo.Partida;
+import service.PartidaService;
 
 @ManagedBean
 @SessionScoped
 public class PartidaMB {
 	
-	private ArrayList<Partida> lista = new ArrayList<Partida>();
-	private Partida partida = new Partida();
+	private PartidaService partidaService = new PartidaService();
+	private Partida partidaNova = new Partida();
+	private Partida partidaAtual;
+	private List<Partida> partidas;
 	
-	public String Salvar() {
-		lista.add(partida);
-		partida = new Partida();
+	public String salvar() {
+		partidaService.salvar(partidaNova);
+		partidaNova = new Partida();
 		return "Menu";
 	}
-	public ArrayList<Partida> getLista() {
-		return lista;
+	
+	public void remover(Partida partida) {
+		partidaService.remover(partida);
+		partidas.remove(partida);
 	}
-	public void setLista(ArrayList<Partida> lista) {
-		this.lista = lista;
+	
+	public List<Partida> getPartidas() {
+		if(partidas == null) {
+			partidas = partidaService.getPartidas();
+		}
+		
+		return partidas;
 	}
-	public Partida getPartida() {
-		return partida;
+
+	public void setPartidas(List<Partida> partidas) {
+		this.partidas = partidas;
 	}
-	public void setPartida(Partida partida) {
-		this.partida = partida;
+
+	public PartidaService getPartidaService() {
+		return partidaService;
+	}
+
+	public void setPartidaService(PartidaService partidaService) {
+		this.partidaService = partidaService;
+	}
+
+	public Partida getPartidaNova() {
+		return partidaNova;
+	}
+
+	public void setPartidaNova(Partida partidaNova) {
+		this.partidaNova = partidaNova;
+	}
+
+	public Partida getPartidaAtual() {
+		return partidaAtual;
+	}
+
+	public void setPartidaAtual(Partida partidaAtual) {
+		this.partidaAtual = partidaAtual;
 	}
 }

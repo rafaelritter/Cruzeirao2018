@@ -6,19 +6,19 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Categorias do Campeonato</title>
+<title>Inscricoes da Equipe</title>
 </h:head>
 	<h:body>
 	<br/>
 	<p:outputLabel value="USUÁRIO QUE ESTÁ GERENCIANDO: #{usuarioMB.usuarioAtual.nome}"/>
 	<br/>
-	<p:outputLabel value="CAMPEONATO ATUAL: #{campeonatoMB.campeonatoAtual.nome}"/>
+	<p:outputLabel value="EQUIPE ATUAL: #{equipeMB.equipeAtual.nome}"/>
 	<br/>
 		<h:form>
 			<h1>OPÇÕES</h1>
-			<h:commandLink value="CADASTRAR NOVA CATEGORIA" action="#{campeonatoMB.criarCategoria()}"/>
+			<h:commandLink value="FAZER NOVA INSCRICAO" action="#{equipeMB.criarInscricao()}"/>
 			<br/><br/>
-			<p:link outcome="ListarCategorias" value ="VER CATEGORIAS CADASTRADAS"/>
+			<p:link outcome="ListarInscritos" value ="VER INSCRICOES CADASTRADAS"/>
 		</h:form>
 		<br/>
 		<p:link outcome="Menu" value ="VOLTAR AO MENU PRINCIPAL"/>

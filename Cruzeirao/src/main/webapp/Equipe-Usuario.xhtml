@@ -14,7 +14,7 @@
 	<br/>
 			<h:form>
 				<h1>OPÇÕES</h1>
-				<p:link outcome="CadastroEquipe" value ="CADASTRAR NOVA EQUIPE"/>
+				<h:commandLink value="CADASTRAR NOVA EQUIPE" action="#{usuarioMB.criarEquipes()}" />
 				<br/><br/>
 				<p:link outcome="ListarEquipes" value ="VER EQUIPES CADASTRADAS"/>
 			</h:form>

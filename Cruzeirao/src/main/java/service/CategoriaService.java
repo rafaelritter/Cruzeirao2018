@@ -59,7 +59,6 @@ public class CategoriaService {
 	public Categoria getInscricaoCategoria(Categoria c) {
 		c = categoriaDAO.getById(Categoria.class, c.getIdCategoria());
 		c.getInscricoes().size();
-		System.out.println(c.getInscricoes());
 		categoriaDAO.closeEntityManager();
 		return c;
 	}
@@ -67,7 +66,6 @@ public class CategoriaService {
 	public Categoria getFaseCategoria(Categoria c) {
 		c = categoriaDAO.getById(Categoria.class, c.getIdCategoria());
 		c.getFases().size();
-		System.out.println(c.getFases());
 		categoriaDAO.closeEntityManager();
 		return c;
 	}

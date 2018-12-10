@@ -1,8 +1,8 @@
 package modelo;
 
-import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Rodada {
@@ -12,7 +12,8 @@ public class Rodada {
 	
 	private Grupo grupo;
 	
-	private ArrayList<Partida> listaPartida = new ArrayList<Partida>();
+	@ManyToOne
+	private Partida partida;
 
 	public int getNumero() {
 		return numero;
@@ -25,11 +26,5 @@ public class Rodada {
 	}
 	public void setGrupo(Grupo grupo) {
 		this.grupo = grupo;
-	}
-	public ArrayList<Partida> getListaPartida() {
-		return listaPartida;
-	}
-	public void setListaPartida(ArrayList<Partida> listaPartida) {
-		this.listaPartida = listaPartida;
 	}
 }

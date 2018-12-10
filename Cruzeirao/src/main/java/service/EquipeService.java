@@ -49,7 +49,6 @@ public class EquipeService {
 	public Equipe getInscricaoEquipe(Equipe e) {
 		e = equipeDAO.getById(Equipe.class, e.getIdEquipe());
 		e.getInscricoes().size();
-		System.out.println(e.getInscricoes());
 		equipeDAO.closeEntityManager();
 		return e;
 	}

@@ -55,7 +55,7 @@
 				</p:column>
 				
 				<p:column headerText="Opção 1">
-				<p:link outcome = "Categoria-Campeonato" value = "Gerenciar Categorias"/>
+				<p:commandLink action="#{campeonatoMB.mostrarCategorias(campeonato)}" value="Gerenciar Categorias" />
 				</p:column>
 				
 				<p:column headerText="Opção 2">
@@ -64,7 +64,7 @@
 				
 			</p:dataTable>
 			<h1>OPÇÕES</h1>
-			<p:link outcome="CadastroCampeonato" value ="CADASTRAR NOVO CAMPEONATO"/>
+			<h:commandLink value="CADASTRAR NOVO CAMPEONATO" action="#{usuarioMB.criarCampeonatos()}" />
 		</h:form>
 		<br/>
 		<p:link outcome="Menu" value ="VOLTAR AO MENU PRINCIPAL"/>

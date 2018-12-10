@@ -10,6 +10,8 @@
 </h:head>
 	<h:body>
 	<br/>
+	<p:outputLabel value="USUÁRIO QUE ESTÁ GERENCIANDO: #{usuarioMB.usuarioAtual.nome}"/>
+	<br/>
 	<p:outputLabel value="CAMPEONATO ATUAL: #{campeonatoMB.campeonatoAtual.nome}"/>
 	<br/>
 	<h1>CATEGORIAS CADASTRADAS</h1>
@@ -37,11 +39,15 @@
 				</p:column>
 				    
 				<p:column headerText="Opção 1" >
-				<p:link outcome="DeterminarFase" value="Determinar Fase"/>
+				<p:commandLink action="#{categoriaMB.mostrarFases(cat)}" value="Gerenciar Fases"/>
 				</p:column>
 				
-				<p:column headerText="Opção 2">
-				<p:commandLink action="#{categoriaMB.remover(categoria)}" value="Excluir" update="formCategoria"></p:commandLink>
+				<p:column headerText="Opção 2" >
+				<p:commandLink action="#{categoriaMB.mostrarInscricoes(cat)}" value="Gerenciar Inscricoes"/>
+				</p:column>
+				
+				<p:column headerText="Opção 3">
+				<p:commandLink action="#{categoriaMB.remover(cat)}" value="Excluir" update="formCategoria"></p:commandLink>
 				</p:column>
 			       
 			</p:dataTable>

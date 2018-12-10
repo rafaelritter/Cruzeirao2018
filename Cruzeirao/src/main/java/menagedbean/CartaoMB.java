@@ -15,7 +15,7 @@ public class CartaoMB{
 	public String Salvar() {
 		lista.add(cartao);
 		cartao = new Cartao();
-		return "Menu";
+		return "Menu"; 
 	}
 
 	public ArrayList<Cartao> getLista() {
